@@ -1,0 +1,547 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(content='width=device-width, initial-scale=1.0' name='viewport')
+  title Director Dashboard
+  meta(content='' name='description')
+  meta(content='' name='keywords')
+  // Vendor CSS Files
+  link(href='/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+  link(href='/vendor/bootstrap-icons/bootstrap-icons.css' rel='stylesheet')
+  // Datatables CDN
+  link(href='https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css' rel='stylesheet' type='text/css')
+  script(src='https://cdn.jsdelivr.net/npm/simple-datatables@latest' type='text/javascript')
+  // Template Main CSS File
+  link(rel='stylesheet' href='/css/style.css')
+  link(rel='stylesheet' href='/css/index.css')
+nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
+  .container-fluid
+    a.navbar-brand(href='#') KGL Ltd.
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarNavDropdown.collapse.navbar-collapse.justify-content-end
+      ul.navbar-nav.mainNavbar
+        li.nav-item.mainNav
+          a.nav-link.active(style='word-wrap: normal; max-width: 125px; text-align: center;' aria-current='page' href='#') Dashboard (Director)
+        // Make a way back to Director from Manager via the routes
+        li.nav-item.mainNav
+          a.nav-link(style='word-wrap: normal; max-width: 125px; text-align: center;' href='./dirMangDash.html') Dashboard (Manager)
+        li.nav-item.mainNav
+          a.nav-link(href='./directorPurchases.html') Purchases
+        li.nav-item.mainNav
+          a.nav-link(href='./directorSales.html') Sales
+        li.nav-item.mainNav
+          a.nav-link(href='./directorSuppliers.html') Suppliers
+        li.nav-item.mainNav
+          a.nav-link(href='./directorCreditors.html') Creditors
+        li.nav-item.dropdown.mainNav
+          a.nav-link.nav-profile.d-flex.align-items-center.pe-0(href='#' data-bs-toggle='dropdown')
+            img.profileImg(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' alt='Profile')
+            span.d-none.d-md-block.dropdown-toggle.ps-2 M.Orban
+          ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow.profile(aria-labelledby='navbarDropdownMenuLink')
+            li.dropdown-header
+              h6 Orban Martin
+              span Director
+            li
+              hr.dropdown-divider
+            li
+              a.dropdown-item.d-flex.align-items-center(data-bs-toggle='modal' data-bs-target='#largeModalprofile' onclick='profileModal()')
+                i.bi.bi-person
+                span My Profile
+            li
+              hr.dropdown-divider
+            li
+              a.dropdown-item.d-flex.align-items-center(data-bs-toggle='modal' data-bs-target='#largeModalAccts' onclick='acctSettingModal()')
+                i.bi.bi-gear
+                span User Account Settings
+            li
+              hr.dropdown-divider
+            li
+              a.dropdown-item.d-flex.align-items-center(href='../login+registration/loginModal.html')
+                i.bi.bi-box-arrow-right
+                span Sign Out
+.card.mb-0
+  .card-body.bodyCard
+    // Bordered Tabs
+    ul#borderedTab.nav.nav-tabs.nav-tabs-bordered(role='tablist')
+      li.nav-item.mainNav(style='height:40px; margin-left: 200px;' role='presentation')
+        button#profile-tabMain.nav-link.active(style='border-bottom:none; color: white; background-color: #21272e;' data-bs-toggle='tab' data-bs-target='#bordered-profile' type='button' role='tab' aria-controls='profile' aria-selected='false')
+          | Master Dashboard
+    #carouselExampleSlidesOnly.carousel.slide(data-bs-ride='carousel')
+      .carousel-inner
+        .carousel-item.active
+          img.d-block.w-100(src='/img/istockphoto-181068280-1024x1024.jpg' alt='...')
+    #borderedTabContent.tab-content.pt-3
+      #bordered-home.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='home-tab')
+        .container
+          .row
+            .col
+              .row
+                .col-sm-6
+                  .card.info-card.sales-card
+                    .filter.justify-content-end.d-flex(style='margin-right:20px;')
+                      a.icon(style='color:grey;' href='#' data-bs-toggle='dropdown' aria-expanded='false')
+                        i.bi.bi-three-dots
+                      ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow
+                        li.dropdown-header.text-start
+                          h6 Filter
+                        li
+                          a.dropdown-item(href='#') Today
+                        li
+                          a.dropdown-item(href='#') This Month
+                        li
+                          a.dropdown-item(href='#') This Year
+                    .card-body
+                      h5.card-title.pt-0
+                        | Sales - Magganjo 
+                        span | Today
+                      .d-flex.align-items-center
+                        div
+                          ul(style='list-style-type:none;')
+                            h6
+                              li
+                                i.bi.bi-cart
+                                |  Total Sales: 
+                                span.text-success.pt-1.fw-bold 37
+                            h6
+                              li
+                                i.bi.bi-currency-dollar
+                                | Total Revenue: 
+                                span.text-success.pt-1.fw-bold 3,500,000. UGX 
+                            //
+                              <span class="text-success small pt-1 fw-bold">12%</span> <span
+                              class="text-muted small pt-2 ps-1">increase</span></li>
+                .col-sm-6
+                  .card.info-card.sales-card
+                    .filter.justify-content-end.d-flex(style='margin-right:20px;')
+                      a.icon(style='color:grey;' href='#' data-bs-toggle='dropdown' aria-expanded='false')
+                        i.bi.bi-three-dots
+                      ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow
+                        li.dropdown-header.text-start
+                          h6 Filter
+                        li
+                          a.dropdown-item(href='#') Today
+                        li
+                          a.dropdown-item(href='#') This Month
+                        li
+                          a.dropdown-item(href='#') This Year
+                    .card-body
+                      h5.card-title.pt-0
+                        | Sales - Matugga 
+                        span | This Month
+                      .d-flex.align-items-center
+                        div
+                          ul(style='list-style-type:none;')
+                            h6
+                              li
+                                i.bi.bi-cart
+                                |  Total Sales: 
+                                span.text-success.pt-1.fw-bold 374
+                            h6
+                              li
+                                i.bi.bi-currency-dollar
+                                | Total Revenue: 
+                                span.text-success.pt-1.fw-bold 35,000,000. UGX 
+                            //
+                              <span class="text-success small pt-1 fw-bold">12%</span> <span
+                              class="text-muted small pt-2 ps-1">increase</span></li>
+              .row
+                .col-sm-12
+                  // Default Card
+                  .card
+                    .card-body
+                      h5.card-title Default Card
+                      |                         Ut in ea error laudantium quas omnis officia. Sit sed praesentium voluptas. Corrupti inventore
+                      |                         consequatur nisi necessitatibus modi consequuntur soluta id. Enim autem est esse natus
+                      |                         assumenda. Non sunt dignissimos officiis expedita. Consequatur sint repellendus voluptas.
+                      |                         Quidem sit est nulla ullam. Suscipit debitis ullam iusto dolorem animi dolorem numquam.
+                  // End Default Card
+            .col-sm-3
+              // Card with an image on top
+              .card
+                img.card-img-top(src='/img/notepadsimage.jpg' style='max-width:500px;' alt='...')
+                .card-body
+                  h5.card-title.pb-0 Notes
+                  p.card-text
+                    ul(style='list-style-type:none; padding-left:0px;')
+                      li
+                        | Some quick example text to build on the card title and make up the bulk of the
+                        | card&apos;s content.
+                      li
+                        hr.dropdown-divider
+                      li
+                        | Some quick example text to build on the card title and make up the bulk of the
+                        | card&apos;s content.
+              // End Card with an image on top
+    // End Bordered Tabs
+// Profile Modal
+#largeModalprofile.modal.fade(tabindex='-1')
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header.fresher
+        h5.modal-title User Profile
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+        // #main
+        main#main.main
+          .pagetitle.profiletitle
+            h1 Profile
+            nav
+              ol.breadcrumb.profileCrumb
+                li.breadcrumb-item
+                  a(href='index.html') Home
+                li.breadcrumb-item Users
+                li.breadcrumb-item.active Profile
+          // End Page Title
+      section.section.profile
+        .row
+          .col-lg-4
+            .card
+              .card-body.profile-card.pt-4.d-flex.flex-column.align-items-center
+                img.rounded-circle(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' alt='Profile')
+                h2 Mr.Orban
+                h3 Director
+                //
+                  <div class="social-links mt-2">
+                  <a href="#" class="twitter"
+                  ><i class="bi bi-twitter"></i
+                  ></a>
+                  <a href="#" class="facebook"
+                  ><i class="bi bi-facebook"></i
+                  ></a>
+                  <a href="#" class="instagram"
+                  ><i class="bi bi-instagram"></i
+                  ></a>
+                  <a href="#" class="linkedin"
+                  ><i class="bi bi-linkedin"></i
+                  ></a>
+                  </div>
+          .col-lg-8
+            .card
+              .card-body.pt-3
+                // Bordered Tabs
+                ul.nav.nav-tabs.nav-tabs-bordered
+                  li.nav-item
+                    button.nav-link.active(data-bs-toggle='tab' data-bs-target='#profile-overview')
+                      | Overview
+                  li.nav-item
+                    button.nav-link(data-bs-toggle='tab' data-bs-target='#profile-edit')
+                      | Edit Profile
+                  li.nav-item
+                    button.nav-link(data-bs-toggle='tab' data-bs-target='#profile-settings')
+                      | Settings
+                  li.nav-item
+                    button.nav-link(data-bs-toggle='tab' data-bs-target='#profile-change-password')
+                      | Change Password
+                .tab-content.pt-2
+                  #profile-overview.tab-pane.fade.show.active.profile-overview
+                    h5.card-title About
+                    p.small.fst-italic
+                      | Lorem ipsum dolor sit amet, consectetur adipiscing
+                      | elit. Vestibulum hendrerit, ante a sagittis
+                      | posuere, elit nibh convallis nunc, quis faucibus
+                      | sem diam id leo. Vivamus id arcu pellentesque,
+                      | blandit tortor sagittis, facilisis libero. Aenean
+                      | mattis tellus a dui consectetur, et viverra turpis
+                      | aliquam.
+                    h5.card-title Profile Details
+                    .row
+                      .col-lg-3.col-md-4.label
+                        | Full Name
+                      .col-lg-9.col-md-8
+                        | Orban Martin-Luther
+                    .row
+                      .col-lg-3.col-md-4.label Company
+                      .col-lg-9.col-md-8
+                        | Karibu Groceries Limited.
+                    .row
+                      .col-lg-3.col-md-4.label Job
+                      .col-lg-9.col-md-8 Director
+                    .row
+                      .col-lg-3.col-md-4.label Country
+                      .col-lg-9.col-md-8 UGANDA
+                    .row
+                      .col-lg-3.col-md-4.label Address
+                      .col-lg-9.col-md-8
+                        | Kawaga Close, off Kalungi Road, Muyenga,
+                        | Kampala, Uganda.
+                    .row
+                      .col-lg-3.col-md-4.label Phone
+                      .col-lg-9.col-md-8
+                        | +256 759 912 204
+                    .row
+                      .col-lg-3.col-md-4.label Email
+                      .col-lg-9.col-md-8
+                        | d.mugisa@student.ciu.ac.ug
+                  #profile-edit.tab-pane.fade.profile-edit.pt-3
+                    // Profile Edit Form
+                    form(name='editprofile')
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='profileImage') Profile Image
+                        .col-md-8.col-lg-9
+                          img(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' alt='Profile')
+                          .pt-2
+                            a.btn.btn-dark.btn-sm(href='#' title='Upload new profile image')
+                              i.bi.bi-upload
+                            a.btn.btn-danger.btn-sm(href='#' title='Remove my profile image')
+                              i.bi.bi-trash
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='fullName') Full Name
+                        .col-md-8.col-lg-9
+                          input#fullName.form-control(name='fullname' onblur='profileName()' type='text' placeholder='Full Name' value='')
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='about') About
+                        .col-md-8.col-lg-9
+                          textarea#about.form-control(name='about' onblur='profileAbout()' style='height: 100px')
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='company') Company
+                        .col-md-8.col-lg-9
+                          input#company.form-control(name='company' onblur='profileCompany()' type='text' placeholder='Karibu Groceries Limited.' value='')
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='Job') Job
+                        .col-md-8.col-lg-9
+                          input#Job.form-control(name='job' onblur='profileRole()' type='text' placeholder='Manager' value='')
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='Country') Country
+                        .col-md-8.col-lg-9
+                          input#Country.form-control(name='country' onblur='profileCountry()' type='text' placeholder='UGANDA' value='')
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='Address') Address
+                        .col-md-8.col-lg-9
+                          input#Address.form-control(name='address' onblur='profileAddress()' type='text' placeholder='Kawaga Close, off Kalungi Road, Muyenga, Kampala, Uganda.' value='')
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='Phone') Phone
+                        .col-md-8.col-lg-9
+                          input#Phone.form-control(name='phone' onblur='profilePhone()' type='text' placeholder='--- --- --- ---' value='')
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='Email') Email
+                        .col-md-8.col-lg-9
+                          input#Email.form-control(name='email' onblur='profileEmail()' type='email' placeholder='email@example.ac.ug' value='')
+                      .text-center
+                        button.btn.btn-dark(type='submit')
+                          | Save Changes
+                    // End Profile Edit Form
+                  #profile-settings.tab-pane.fade.pt-3
+                    // Settings Form
+                    form
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='fullName') Email Notifications
+                        .col-md-8.col-lg-9
+                          .form-check
+                            input#changesMade.form-check-input(type='checkbox' checked='')
+                            label.form-check-label(for='changesMade')
+                              | Changes made to your account
+                          .form-check
+                            input#newProducts.form-check-input(type='checkbox' checked='')
+                            label.form-check-label(for='newProducts')
+                              | Information on new products and services
+                          .form-check
+                            input#proOffers.form-check-input(type='checkbox')
+                            label.form-check-label(for='proOffers')
+                              | Marketing and promo offers
+                          .form-check
+                            input#securityNotify.form-check-input(type='checkbox' checked='' disabled='')
+                            label.form-check-label(for='securityNotify')
+                              | Security alerts
+                      .text-center
+                        button.btn.btn-dark(type='submit')
+                          | Save Changes
+                    // End settings Form
+                  #profile-change-password.tab-pane.fade.pt-3
+                    // Change Password Form
+                    form
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='currentPassword') Current Password
+                        .col-md-8.col-lg-9
+                          input#currentPassword.form-control(name='password' type='password')
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='newPassword') New Password
+                        .col-md-8.col-lg-9
+                          input#newPassword.form-control(name='newpassword' type='password')
+                      .row.mb-3
+                        label.col-md-4.col-lg-3.col-form-label(for='renewPassword')
+                          | Re-enter New
+                          | Password
+                        .col-md-8.col-lg-9
+                          input#renewPassword.form-control(name='renewpassword' type='password')
+                      .text-center
+                        button.btn.btn-dark(type='submit')
+                          | Change Password
+                    // End Change Password Form
+                // End Bordered Tabs
+              .modal-footer.fresher
+                //
+                  <button
+                  type="button"
+                  class="btn btn-dark"
+                  data-bs-dismiss="modal"
+                  >
+                  Close
+                  </button>
+                  <button type="button" class="btn btn-dark">Save changes</button>
+      // End #Main
+// End of Profile Modal
+// User Settings Modal
+#largeModalAccts.modal.fade(tabindex='-1')
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header.fresher
+        h5.modal-title User Account Settings
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body
+        h5.h5.pb-3.pt-1.mb-0(style='font-weight:550;') Master Account
+        .card
+          .card-body.body-carder
+            // Bordered Tabs Justified
+            ul#borderedTabJustified.nav.nav-tabs.userSetTab.nav-tabs-bordered.d-flex(role='tablist')
+              li.nav-item.userSet.flex-fill(style='border-left:1px solid black; border-right:1px solid black;' role='presentation')
+                button#home-tab.nav-link.userSetLink.w-100.active(data-bs-toggle='tab' data-bs-target='#bordered-justified-home' type='button' role='tab' aria-controls='home' aria-selected='true')
+                  | View All User Accounts
+              li.nav-item.userSet.flex-fill(style='border-left:1px solid black; border-right: 1px solid black;' role='presentation')
+                button#profile-tab.nav-link.userSetLink.w-100(data-bs-toggle='tab' data-bs-target='#bordered-justified-profile' type='button' role='tab' aria-controls='profile' aria-selected='false')
+                  | Create User Account
+              li.nav-item.userSet.flex-fill(style='border-left:1px solid black; border-right:1px solid black;' role='presentation')
+                button#contact-tab.nav-link.userSetLink.w-100(data-bs-toggle='tab' data-bs-target='#bordered-justified-contact' type='button' role='tab' aria-controls='contact' aria-selected='false')
+                  | Authorization Requests
+            #borderedTabJustifiedContent.tab-content.pt-2
+              #bordered-justified-home.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='home-tab')
+                .card
+                  .card-body.pb-0
+                    h5.card-title User Accounts
+                    // Table with stripped rows
+                    table.table.datatable.table-responsive
+                      thead
+                        tr
+                          th(scope='col') #
+                          th(scope='col') User Account
+                          th(scope='col') Authorization
+                          th(scope='col') Modify Account
+                      tbody
+                        tr
+                          th(scope='row') 1
+                          td Dominic Mugisa
+                          td Manager - Maganjo
+                          td
+                            button.btn.btn-success.p-1.pt-0.pb-0 Edit Account
+                            button.btn.btn-danger.p-1.pt-0.pb-0 Delete
+                        tr
+                          th(scope='row') 2
+                          td Osman Buyondo
+                          td Manager - Matugga
+                          td
+                            button.btn.btn-success.p-1.pt-0.pb-0 Edit Account
+                            button.btn.btn-danger.p-1.pt-0.pb-0 Delete
+                        tr
+                          th(scope='row') 3
+                          td Joan.N
+                          td Sales Agent - Maganjo
+                          td
+                            button.btn.btn-success.p-1.pt-0.pb-0 Edit Account
+                            button.btn.btn-danger.p-1.pt-0.pb-0 Delete
+                        tr
+                          th(scope='row') 4
+                          td Julia.N
+                          td Sales Agent - Maganjo
+                          td
+                            button.btn.btn-success.p-1.pt-0.pb-0 Edit Account
+                            button.btn.btn-danger.p-1.pt-0.pb-0 Delete
+                        tr
+                          th(scope='row') 5
+                          td Fred Nsereko
+                          td Sales Agent - Matugga
+                          td
+                            button.btn.btn-success.p-1.pt-0.pb-0 Edit Account
+                            button.btn.btn-danger.p-1.pt-0.pb-0 Delete
+                    // End Table with stripped rows
+              #bordered-justified-profile.tab-pane.fade(role='tabpanel' aria-labelledby='profile-tab')
+                .card
+                  .card-body.pb-0
+                    h5.card-title New User
+                    .container-fluid.d-flex.justify-content-center
+                      form.row.gy-3.mb-3(name='createprofile')
+                        .col-sm-7
+                          .row.gy-3
+                            .col-sm-12
+                              label.form-label(for='inputName5') First Name
+                              input#inputName5.form-control(type='text' name='firstname' onblur='firstName()')
+                            .col-sm-12
+                              label.form-label(for='inputName5') Surname
+                              input#inputName5.form-control(type='text' name='surname' onblur='surName()')
+                        .col-sm-5.d-flex.justify-content-center
+                          img#profilemaster(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' alt='')
+                        .col-sm-6
+                          label.form-label(for='inputAddress5') Telephone
+                          input#inputAddres5s.form-control(type='text' name='telephone' onblur='userTel()' placeholder='Telephone')
+                        .col-sm-6
+                          label.form-label(for='inputAddress5') Email
+                          input#inputAddres5s.form-control(type='text' name='email' onblur='userMail()' placeholder='email@example.com')
+                        .col-sm-6
+                          label.form-label(for='inputAddress5') Physical Address
+                          input#inputAddres5s.form-control(type='text' onblur='userAddr()' name='address1' placeholder='Physical Address')
+                        .col-sm-6
+                          label.form-label(for='inputAddress5') Physical Address 2
+                          input#inputAddres5s.form-control(type='text' name='address2' onblur='userAddr2()' placeholder='Physical Address')
+                        .col-sm-6
+                          label.form-label(for='inputAddress2') National ID Number
+                          input#inputAddress2.form-control(type='text' name='nin' onblur='userNIN()' placeholder='____________')
+                        .col-sm-6.mb-4
+                          label.form-label(for='inputAddress2') TIN Number
+                          input#inputAddress2.form-control(type='text' name='tin' onblur='userTIN()' placeholder='____________')
+                        .d-flex.justify-content-end
+                          ul(style='list-style-type:none;')
+                            li
+                              button.btn.btn-dark.listbtn(type='submit') Create User
+                              button.btn.btn-dark.listbtn(type='button' data-bs-dismiss='modal') Cancel
+              #bordered-justified-contact.tab-pane.fade(role='tabpanel' aria-labelledby='contact-tab')
+                .card
+                  .card-body.pb-0
+                    h5.card-title.pb-0.mb-0 Authorization Requests
+                    ul.notifications(style='list-style-type:none;')
+                      li.dropdown-header.pb-0
+                        | You have 2 new notifications
+                        a(href='#')
+                          span.badge.rounded-pill.bg-primary.p-2.ms-2.mb-1.mt-1 View all
+                      li
+                        hr.dropdown-divider.mt-0
+                      li.notification-item
+                        i.bi.bi-info-circle.text-primary
+                        div
+                          h4 Sales Agent - Mattuga
+                          ul(style='list-style-type: none;')
+                            li  Review User Authorization Request.
+                            li
+                              button.btn.btn-success.p-1.ms-1.pt-0.pb-0 Accept
+                              button.btn.btn-danger.p-1.ms-1.pt-0.pb-0 Defer
+                          p 30 min. ago
+                      li
+                        hr.dropdown-divider
+                      li.notification-item
+                        i.bi.bi-info-circle.text-primary
+                        div
+                          h4 Sales Agent - Mattuga
+                          ul(style='list-style-type: none;')
+                            li  Review User Authorization Request.
+                            li
+                              button.btn.btn-success.p-1.ms-1.pt-0.pb-0 Accept
+                              button.btn.btn-danger.p-1.ms-1.pt-0.pb-0 Defer
+                          p 1 hr. ago
+                      li
+                        hr.dropdown-divider
+                      li.dropdown-footer
+                        a(href='#') Show all notifications
+            // End Bordered Tabs Justified
+          .d-flex.justify-content-end
+            ul(style='list-style-type:none;')
+              li
+                button.btn.btn-dark.listbtn(type='button' data-bs-dismiss='modal') Dismiss
+      .modal-footer.pt-0.fresher(style='height:50px;')
+// End of User Settings Modal
+footer#footer.footer(style='background-color:rgba(70, 71, 95, 0.803); height: 50px;')
+  .copyright(style='text-align: center; color:black; font-size:medium;')
+    p Copyright 2022 &copy; Dev&apos;d By Dom
+// Vendor JS Files
+script(src='/vendor/bootstrap/js/bootstrap.bundle.min.js')
+script(src='/vendor/simple-datatables/simple-datatables.js')
+// Template Main JS File
+script(src='/js/main.js')
+script(src='/js/index.js')

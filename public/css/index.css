@@ -1,0 +1,216 @@
+.myNav {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  /* max-width: 100% */
+}
+.mainNavbar .mainNav .nav-link.active {
+  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.536);
+  border-radius: 10px;
+}
+/* .mainNavbar {
+  padding-left: 50px;
+  padding-right: 50px;
+  justify-content:space-between;
+} */
+/* ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+li{
+  display: inline;
+} */
+/* .myNav .mainNavbar .mainNav{
+  display: flex;
+  justify-content:space-between;
+} */
+
+/* Non-modal Bordered Tabs */
+.mainNav-tabs-bordered {
+  /* border-bottom: 2px solid rgba(70, 71, 95, 0.803); */
+  margin-left: 150px;
+}
+.mainNav-tabs-bordered .nav-item {
+  padding: 0 20px 0 20px;
+}
+.mainNav-tabs-bordered .nav-link {
+  /* margin-bottom: -2px;
+  border: none;*/
+  /* color: white !important; */
+  /* background-color:rgba(133, 134, 157, 0.722); */
+  /* border-bottom: 3px solid rgb(193, 181, 164); */
+
+  background-color: rgb(193, 181, 164);
+  color: black !important;
+  border-bottom: 3px solid white;
+}
+.mainNav-tabs-bordered .nav-link:hover {
+  color: rgb(95, 85, 70) !important;
+  background-color: rgb(193, 181, 164) !important;
+  border-bottom: 3px solid black !important;
+}
+/* .mainNav-tabs-bordered .nav-link:focus {
+  color: rgb(95, 85, 70) !important;
+} */
+.mainNav-tabs-bordered .nav-link.active {
+  /* background-color: rgb(193, 181, 164);*/
+  color: white !important;
+  /*border-bottom: 3px solid white; */
+  border-bottom:none; background-color: #21272e;
+}
+
+#main {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.modal-body {
+  padding-bottom: 0px;
+}
+.profileCrumb {
+  margin-bottom: 0px;
+}
+.profiletitle {
+  margin-bottom: 0px;
+}
+.modal-title {
+  font-size: 30px;
+  font-family: algerian;
+  padding-left: 50px;
+}
+.navbar-nav {
+  align-items: center;
+}
+.nav-profile span {
+  color: white;
+}
+.nav-profile {
+  margin-right: 40px;
+}
+
+.navBarCats{
+  margin-right: 40px;
+}
+.navbar-brand {
+  margin-left: 40px;
+  font-family: "Algerian";
+}
+.profileImg {
+  max-width: 30px;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+.mainNav-tabs-bordered {
+  /* background-color: rgba(70, 71, 95, 0.803); */
+}
+.bodyCard {
+  padding-left: 0px;
+  padding-right: 0px;
+  background-color: antiquewhite;
+}
+.body-carder {
+  padding: 0px;
+}
+.listbtn {
+  width: fit-content;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.purch{
+  justify-content: center;
+  display: flex;
+}
+.purchTitle{
+  text-decoration:underline 1px solid antiquewhite;
+  color: antiquewhite;
+  font-family: 'Lucida Sans';
+  font-weight: 300;
+}
+.h5 {
+  text-align: center;
+  font-size: 25px;
+  font-family: spectral;
+  /* background-color: #f6f9ff; */
+}
+.fresher {
+  background-color: rgba(251, 225, 194, 0.643);
+  height: 50px;
+}
+#profile-tabMain {
+  color: aliceblue;
+  font-weight: 700;
+}
+#profile {
+  max-width: 150px;
+  margin-left: 8px;
+}
+#profilemaster {
+  /* margin-left: 65px; */
+  max-width: 150px;
+}
+#profile-tabMain.active {
+  color: black;
+  font-weight: 700;
+}
+#home-tabMain {
+  color: aliceblue;
+  font-weight: 700;
+}
+#home-tabMain.active {
+  color: black;
+  font-weight: 700;
+}
+.carousel-item img {
+  max-height: 150px;
+  opacity: 85%;
+}
+.loginBod {
+  background-color: rgba(251, 225, 194, 0.643);
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+.welcm {
+  background-color: #202429;
+}
+.titlez {
+  color: rgb(185, 174, 152);
+}
+.purp {
+  background-color: rgba(59, 60, 81, 0.937);
+}
+.userSetTab .userSet .userSetLink:hover {
+  color: black !important;
+  background-color: rgba(255, 228, 196, 0.359);
+  border-bottom: 1px solid black;
+}
+.userSetTab .userSet .userSetLink:focus {
+  color: black !important;
+  font-weight: 550;
+}
+.userSetTab .userSet .userSetLink.active {
+  border-bottom: 2px solid black;
+  background-color: rgba(255, 228, 196, 0.359);
+}
+.userSetTab .userSet .userSetLink {
+  color: black;
+}
+
+/*  In accounts.css (in case I need to join style-sheets to make a single one.)
+
+main #main .main {
+  margin: 0px 0px 0px 0px !important;
+}
+.sidebar {
+  width: 0px !important;
+}
+
+    In style.css - for the accounts profile.
+    
+Commented out on line 558 style.css
+ @media (min-width: 1200px) {
+  #main, #footer {
+    margin-left: 300px;
+  }
+} 
+Commented out on line 39 style.css
+   margin-top: 60px;
+   */

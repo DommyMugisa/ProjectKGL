@@ -1,0 +1,93 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(content='width=device-width, initial-scale=1.0' name='viewport')
+  title Register Modal
+  meta(content='' name='description')
+  meta(content='' name='keywords')
+  link(href='/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
+  link(href='/vendor/bootstrap-icons/bootstrap-icons.css' rel='stylesheet')
+  // Datatables CDN
+  link(href='https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css' rel='stylesheet' type='text/css')
+  script(src='https://cdn.jsdelivr.net/npm/simple-datatables@latest' type='text/javascript')
+  link(rel='stylesheet' href='/css/style.css')
+  link(rel='stylesheet' href='/css/index.css')
+  script(src='https://code.jquery.com/jquery-3.6.0.js')
+  script.
+    $(document).ready(function () {
+    $("#fullscreenModal").modal("show");
+    });
+#fullscreenModal.modal.fade(tabindex='-1')
+  .modal-dialog.modal-fullscreen
+    .modal-content
+      .modal-header.welcm(style='height:50px;')
+        h5.modal-title.titlez Account Registration
+        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+      .modal-body.fresher
+        main
+          .container
+            section.section.register.min-vh-100.d-flex.flex-column.align-items-center.justify-content-center.py-4
+              .container
+                .row.justify-content-center
+                  .col-lg-4.col-md-6.d-flex.flex-column.align-items-center.justify-content-center
+                    .d-flex.justify-content-center.pb-1
+                      a.logo.d-flex.align-items-center.w-auto(href='#')
+                        span.d-none.d-lg-block.text-nowrap(style='font-family: algerian; color:rgb(59, 60, 81);') Karibu Groceries Ltd.
+                    .card.mb-3
+                      .card-body.purp
+                        .pt-1.pb-2
+                          h6.card-title.text-center.pt-2.pb-2.fs-4(style='color:rgba(249, 231, 209, 0.854); font-family: algerian;')
+                            | Register an Account
+                          p.text-center.small.mb-2(style='color:rgba(249, 231, 209, 0.854);')
+                            | Enter your details below to 
+                            span(style='text-decoration:underline 1px solid rgba(249, 231, 209, 0.854);') Request
+                            br
+                            |  for user authorization.
+                        form.row.g-4.needs-validation(name='registeruser')
+                          .col-12
+                            input#yourName.form-control(placeholder='Full Name' type='text' name='name' required='')
+                            .invalid-feedback
+                              | Please, enter your name!
+                          .col-12
+                            .input-group.has-validation
+                              span#inputGroupPrepend.input-group-text @
+                              input#yourUsername.form-control(placeholder='Username / Email' type='text' name='username' required='')
+                              .invalid-feedback
+                                | Please enter your username.
+                          .col-12
+                            input#yourPassword.form-control(placeholder='Password' type='password' name='password' required='')
+                            .invalid-feedback
+                              | Please enter your password!
+                          .col-12
+                            select#authorizationSelect.form-select(name='authorization' onblur='userAuthorReg()' aria-label='authorization' required='')
+                              option(selected='' disabled='' value='') Select Authorization:
+                              option(value='1') Director
+                              option(value='2') Manager
+                              option(value='3') Sales Agent
+                            .valid-feedback Supplier Category is valid!
+                            .invalid-feedback Supplier Category is not valid!
+                          .col-12
+                            .form-check
+                              input#acceptTerms.form-check-input(name='terms' type='checkbox' value='' required='')
+                              label.form-check-label(for='acceptTerms' style='color:rgba(249, 231, 209, 0.854);')
+                                | I agree and accept the
+                                a(href='#' style='color:rgba(249, 231, 209, 0.854); text-decoration:underline 1px solid rgba(249, 231, 209, 0.854);')
+                                  | terms
+                                  | and conditions
+                              .invalid-feedback
+                                | You must agree before submitting.
+                          .col-12
+                            button.btn.btn-dark.w-100(type='submit')
+                              | Request Authorization
+                          .col-12(style='text-align:center;')
+                            p.small.mb-0(style='color:rgba(249, 231, 209, 0.854);')
+                              | Already have an account?
+                              a(href='../login+registration/loginModal.html' style='color:rgba(249, 231, 209, 0.854); text-decoration:underline 1px solid rgba(249, 231, 209, 0.854);')
+                                | Log
+                                | in
+      .modal-footer.welcm(style='justify-content:center; height: 50px;')
+        p.titlez Copyright 2022 &copy; Dev&apos;d By Dom
+script(src='/vendor/bootstrap/js/bootstrap.bundle.min.js')
+script(src='/vendor/simple-datatables/simple-datatables.js')
+script(src='/js/main.js')
+script(src='/js/index.js')
