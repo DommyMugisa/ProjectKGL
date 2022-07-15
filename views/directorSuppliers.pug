@@ -162,11 +162,11 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                   .col-sm-7
                     .row.gy-3
                       .col-sm-12
-                        input#inputName5.form-control(type='text' onblur='supplierFirstName()' name='firstname' placeholder='First Name')
+                        input#inputName5.form-control(type='text' required onblur='supplierFirstName()' name='firstname' placeholder='First Name')
                       .col-sm-12
-                        input#inputName5.form-control(type='text' onblur='supplierSur()' name='surname' placeholder='Surname')
+                        input#inputName5.form-control(type='text' required onblur='supplierSur()' name='surname' placeholder='Surname')
                       .col-sm-12.form-floating
-                        select#inputName5.form-control(type='text' onblur='supplierCateg()' name='category')
+                        select#inputName5.form-control(type='text' required onblur='supplierCateg()' name='category')
                           option(selected='' disabled='') Select Category:
                           option(value='1') Individual Farmer
                           option(value='2') Enterprise
@@ -174,23 +174,23 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                   .col-sm-5.mt-3
                     img#profile(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' style='border-radius:5px;' alt='')
                   .col-sm-12
-                    input#inputAddres5s.form-control(type='text' onblur='supplierBizName()' name='business' placeholder='Business Name')
+                    input#inputAddres5s.form-control(type='text' required onblur='supplierBizName()' name='business' placeholder='Business Name')
                   .col-sm-6
-                    input#inputAddres5s.form-control(type='text' name='telephone' onblur='supplierTelephone()' placeholder='Telephone')
+                    input#inputAddres5s.form-control(type='text' name='telephone' required onblur='supplierTelephone()' placeholder='Telephone')
                   .col-sm-6
-                    input#inputAddres5s.form-control(type='text' name='businesstelephone' onblur='supplierBizTel()' placeholder='Business Telephone')
+                    input#inputAddres5s.form-control(type='text' name='businesstelephone' required onblur='supplierBizTel()' placeholder='Business Telephone')
                   .col-sm-6
-                    input#inputAddres5s.form-control(type='text' name='email' onblur='supplierEmail()' placeholder='E-mail')
+                    input#inputAddres5s.form-control(type='text' name='email' required onblur='supplierEmail()' placeholder='E-mail')
                   .col-sm-6
-                    input#inputAddres5s.form-control(type='text' name='businessemail' onblur='supplierBizEmail()' placeholder='Business E-mail')
+                    input#inputAddres5s.form-control(type='text' name='businessemail' required onblur='supplierBizEmail()' placeholder='Business E-mail')
                   .col-sm-6
-                    input#inputAddres5s.form-control(type='text' name='physicaladdress' onblur='supplierAddress()' placeholder='Physical Address')
+                    input#inputAddres5s.form-control(type='text' name='physicaladdress' required onblur='supplierAddress()' placeholder='Physical Address')
                   .col-sm-6
-                    input#inputAddres5s.form-control(type='text' name='physicaladdress2' onblur='supplierBizAddr()' placeholder='Physical Address 2')
+                    input#inputAddres5s.form-control(type='text' name='physicaladdress2' required onblur='supplierBizAddr()' placeholder='Physical Address 2')
                   .col-sm-6
-                    input#inputAddress2.form-control(type='text' name='nin' onblur='supplierNIN()' placeholder='National ID Number')
+                    input#inputAddress2.form-control(type='text' name='nin' required onblur='supplierNIN()' placeholder='National ID Number')
                   .col-sm-6
-                    input#inputAddress2.form-control(type='text' onblur='supplierTIN()' name='tin' placeholder='TIN Number')
+                    input#inputAddress2.form-control(type='text' required onblur='supplierTIN()' name='tin' placeholder='TIN Number')
             .modal-footer.fresher.pt-0.pb-0
               button.btn.btn-dark(type='submit' data-bs-dismiss='modal') Add Supplier
       // End Modal Dialog Scrollable
@@ -309,35 +309,35 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='fullName') Full Name
                         .col-md-8.col-lg-9
-                          input#fullName.form-control(name='fullname' onblur='profileName()' type='text' placeholder='Full Name' value='')
+                          input#fullName.form-control(name='fullname' required onblur='profileName()' type='text' placeholder='Full Name' value='')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='about') About
                         .col-md-8.col-lg-9
-                          textarea#about.form-control(name='about' onblur='profileAbout()' style='height: 100px')
+                          textarea#about.form-control(name='about' required onblur='profileAbout()' style='height: 100px')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='company') Company
                         .col-md-8.col-lg-9
-                          input#company.form-control(name='company' onblur='profileCompany()' type='text' placeholder='Karibu Groceries Limited.' value='')
+                          input#company.form-control(name='company' required onblur='profileCompany()' type='text' placeholder='Karibu Groceries Limited.' value='')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='Job') Job
                         .col-md-8.col-lg-9
-                          input#Job.form-control(name='job' onblur='profileRole()' type='text' placeholder='Manager' value='')
+                          input#Job.form-control(name='job' required onblur='profileRole()' type='text' placeholder='Manager' value='')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='Country') Country
                         .col-md-8.col-lg-9
-                          input#Country.form-control(name='country' onblur='profileCountry()' type='text' placeholder='UGANDA' value='')
+                          input#Country.form-control(name='country' required onblur='profileCountry()' type='text' placeholder='UGANDA' value='')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='Address') Address
                         .col-md-8.col-lg-9
-                          input#Address.form-control(name='address' onblur='profileAddress()' type='text' placeholder='Kawaga Close, off Kalungi Road, Muyenga, Kampala, Uganda.' value='')
+                          input#Address.form-control(name='address' required onblur='profileAddress()' type='text' placeholder='Kawaga Close, off Kalungi Road, Muyenga, Kampala, Uganda.' value='')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='Phone') Phone
                         .col-md-8.col-lg-9
-                          input#Phone.form-control(name='phone' onblur='profilePhone()' type='text' placeholder='--- --- --- ---' value='')
+                          input#Phone.form-control(name='phone' required onblur='profilePhone()' type='text' placeholder='--- --- --- ---' value='')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='Email') Email
                         .col-md-8.col-lg-9
-                          input#Email.form-control(name='email' onblur='profileEmail()' type='email' placeholder='email@example.ac.ug' value='')
+                          input#Email.form-control(name='email' required onblur='profileEmail()' type='email' placeholder='email@example.ac.ug' value='')
                       .text-center
                         button.btn.btn-dark(type='submit')
                           | Save Changes
@@ -484,30 +484,30 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                           .row.gy-3
                             .col-sm-12
                               label.form-label(for='inputName5') First Name
-                              input#inputName5.form-control(type='text' name='firstname' onblur='firstName()')
+                              input#inputName5.form-control(type='text' name='firstname' required onblur='firstName()')
                             .col-sm-12
                               label.form-label(for='inputName5') Surname
-                              input#inputName5.form-control(type='text' name='surname' onblur='surName()')
+                              input#inputName5.form-control(type='text' name='surname' required onblur='surName()')
                         .col-sm-5.d-flex.justify-content-center
                           img#profilemaster(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' alt='')
                         .col-sm-6
                           label.form-label(for='inputAddress5') Telephone
-                          input#inputAddres5s.form-control(type='text' name='telephone' onblur='userTel()' placeholder='Telephone')
+                          input#inputAddres5s.form-control(type='text' name='telephone' required onblur='userTel()' placeholder='Telephone')
                         .col-sm-6
                           label.form-label(for='inputAddress5') Email
-                          input#inputAddres5s.form-control(type='text' name='email' onblur='userMail()' placeholder='email@example.com')
+                          input#inputAddres5s.form-control(type='text' name='email' required onblur='userMail()' placeholder='email@example.com')
                         .col-sm-6
                           label.form-label(for='inputAddress5') Physical Address
-                          input#inputAddres5s.form-control(type='text' onblur='userAddr()' name='address1' placeholder='Physical Address')
+                          input#inputAddres5s.form-control(type='text' required onblur='userAddr()' name='address1' placeholder='Physical Address')
                         .col-sm-6
                           label.form-label(for='inputAddress5') Physical Address 2
-                          input#inputAddres5s.form-control(type='text' name='address2' onblur='userAddr2()' placeholder='Physical Address')
+                          input#inputAddres5s.form-control(type='text' name='address2' required onblur='userAddr2()' placeholder='Physical Address')
                         .col-sm-6
                           label.form-label(for='inputAddress2') National ID Number
-                          input#inputAddress2.form-control(type='text' name='nin' onblur='userNIN()' placeholder='____________')
+                          input#inputAddress2.form-control(type='text' name='nin' required onblur='userNIN()' placeholder='____________')
                         .col-sm-6.mb-4
                           label.form-label(for='inputAddress2') TIN Number
-                          input#inputAddress2.form-control(type='text' name='tin' onblur='userTIN()' placeholder='____________')
+                          input#inputAddress2.form-control(type='text' name='tin' required onblur='userTIN()' placeholder='____________')
                         .d-flex.justify-content-end
                           ul(style='list-style-type:none;')
                             li

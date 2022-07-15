@@ -165,21 +165,21 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                   .col-sm-12.purch
                     h4.purchTitle(for='') Produce Details
                   .col-sm-6.mt-0.form-floating
-                    input#inputAddres5s.form-control(type='text' name='producename' onblur='produceName()' style='max-height:50px; border:1px solid black;')
+                    input#inputAddres5s.form-control(type='text' name='producename' required onblur='produceName()' style='max-height:50px; border:1px solid black;')
                     label.form-label(for='inputAddress5') Produce Name
                   .col-sm-6.mt-0.form-floating
-                    input#inputAddres5s.form-control(type='text' name='producetype' onblur='produceType()' style='max-height:50px; border:1px solid black;')
+                    input#inputAddres5s.form-control(type='text' name='producetype' required onblur='produceType()' style='max-height:50px; border:1px solid black;')
                     label.form-label(for='inputAddress5') Produce Type
                   .col-sm-6.form-floating
-                    input#inputAddres5s.form-control(type='text' name='quantity' onblur='produceQty()' style='max-height:50px; border:1px solid black;')
+                    input#inputAddres5s.form-control(type='text' name='quantity' required onblur='produceQty()' style='max-height:50px; border:1px solid black;')
                     label.form-label(for='inputAddress5') Tonnage in Kgs
                   .col-sm-6.form-floating
-                    input#inputAddress5.form-control(type='text' name='duedelivery' onblur='dueDelivery()' style='max-height:50px; border:1px solid black;')
+                    input#inputAddress5.form-control(type='text' name='duedelivery' required onblur='dueDelivery()' style='max-height:50px; border:1px solid black;')
                     label.form-label(for='inputAddress5') Due Date &amp; Time
                   .col-sm-12
                     .row
                       .col-sm-6.form-floating
-                        input#inputAddres5s.form-control(type='text' onblur='producePrice()' name='purchaseprice' style='max-height:50px; border:1px solid black;')
+                        input#inputAddres5s.form-control(type='text' required onblur='producePrice()' name='purchaseprice' style='max-height:50px; border:1px solid black;')
                         label.form-label(for='inputAddress5' style='padding-left:25px;')
                           | Purchase Price
                           | (UGX)
@@ -190,10 +190,10 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                   .col-sm-12.purch
                     h4.purchTitle(for='') Supplier Details
                   .col-sm-6.mt-0.form-floating
-                    input#inputAddres5s.form-control(type='text' onblur='supplierName()' name='suppliername' style='max-height:50px; border:1px solid black;')
+                    input#inputAddres5s.form-control(type='text' required onblur='supplierName()' name='suppliername' style='max-height:50px; border:1px solid black;')
                     label.form-label(for='inputAddress5') Supplier Name
                   .col-sm-6.mt-0.form-floating
-                    input#inputAddres5s.form-control(type='text' onblur='supplierContact()' name='suppliercontact' style='max-height:50px; border:1px solid black;')
+                    input#inputAddres5s.form-control(type='text' required onblur='supplierContact()' name='suppliercontact' style='max-height:50px; border:1px solid black;')
                     label.form-label(for='inputAddress5') Supplier Contact
                   ul.mb-0(style='list-style-type:none;')
                     li
@@ -201,12 +201,12 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                   .col-sm-12.purch
                     h4.purchTitle(for='') Branch Details (KGL)
                   .col-sm-6.mt-0.form-floating
-                    select#inputAddress2.form-control(type='text' name='farmlocate' onblur='farmLocate()' style='border:1px solid black;')
+                    select#inputAddress2.form-control(type='text' name='farmlocate' required onblur='farmLocate()' style='border:1px solid black;')
                       option(selected='' value='1') Maganjo
                       option(disabled='' value='2') Mattuga
                     label.form-label(for='inputAddress2') KGL Farm Location
                   .col-sm-6.mt-0.form-floating
-                    input#inputAddress2.form-control(type='text' onblur='farmContact()' name='farmcontact' style='max-height:50px; border:1px solid black;')
+                    input#inputAddress2.form-control(type='text' required onblur='farmContact()' name='farmcontact' style='max-height:50px; border:1px solid black;')
                     label.form-label(for='inputAddress2') KGL Farm Contact
             .modal-footer.fresher.pt-0.pb-0(style='height:50px;')
               button.btn.btn-dark.pt-1.pb-1(type='submit' data-bs-dismiss='modal' style='margin-right: 15px;') Create P/O
@@ -326,35 +326,35 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='fullName') Full Name
                         .col-md-8.col-lg-9
-                          input#fullName.form-control(name='fullname' onblur='profileName()' type='text' placeholder='Full Name' value='')
+                          input#fullName.form-control(name='fullname' required onblur='profileName()' type='text' placeholder='Full Name' value='')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='about') About
                         .col-md-8.col-lg-9
-                          textarea#about.form-control(name='about' onblur='profileAbout()' style='height: 100px')
+                          textarea#about.form-control(name='about' required onblur='profileAbout()' style='height: 100px')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='company') Company
                         .col-md-8.col-lg-9
-                          input#company.form-control(name='company' onblur='profileCompany()' type='text' placeholder='Karibu Groceries Limited.' value='')
+                          input#company.form-control(name='company' required onblur='profileCompany()' type='text' placeholder='Karibu Groceries Limited.' value='')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='Job') Job
                         .col-md-8.col-lg-9
-                          input#Job.form-control(name='job' onblur='profileRole()' type='text' placeholder='Manager' value='')
+                          input#Job.form-control(name='job' required onblur='profileRole()' type='text' placeholder='Manager' value='')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='Country') Country
                         .col-md-8.col-lg-9
-                          input#Country.form-control(name='country' onblur='profileCountry()' type='text' placeholder='UGANDA' value='')
+                          input#Country.form-control(name='country' required onblur='profileCountry()' type='text' placeholder='UGANDA' value='')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='Address') Address
                         .col-md-8.col-lg-9
-                          input#Address.form-control(name='address' onblur='profileAddress()' type='text' placeholder='Kawaga Close, off Kalungi Road, Muyenga, Kampala, Uganda.' value='')
+                          input#Address.form-control(name='address' required onblur='profileAddress()' type='text' placeholder='Kawaga Close, off Kalungi Road, Muyenga, Kampala, Uganda.' value='')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='Phone') Phone
                         .col-md-8.col-lg-9
-                          input#Phone.form-control(name='phone' onblur='profilePhone()' type='text' placeholder='--- --- --- ---' value='')
+                          input#Phone.form-control(name='phone' required onblur='profilePhone()' type='text' placeholder='--- --- --- ---' value='')
                       .row.mb-3
                         label.col-md-4.col-lg-3.col-form-label(for='Email') Email
                         .col-md-8.col-lg-9
-                          input#Email.form-control(name='email' onblur='profileEmail()' type='email' placeholder='email@example.ac.ug' value='')
+                          input#Email.form-control(name='email' required onblur='profileEmail()' type='email' placeholder='email@example.ac.ug' value='')
                       .text-center
                         button.btn.btn-dark(type='submit')
                           | Save Changes
