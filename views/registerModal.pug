@@ -45,17 +45,17 @@ head
                             |  for user authorization.
                         form.row.g-4.needs-validation(name='registeruser')
                           .col-12
-                            input#yourName.form-control(placeholder='Full Name' type='text' name='name' required='')
+                            input#yourName.form-control(placeholder='Full Name' type='text' name='fullname' onblur='userFullNamReg()' required='')
                             .invalid-feedback
                               | Please, enter your name!
                           .col-12
                             .input-group.has-validation
                               span#inputGroupPrepend.input-group-text @
-                              input#yourUsername.form-control(placeholder='Username / Email' type='text' name='username' required='')
+                              input#yourUsername.form-control(placeholder='Username / Email' type='text' name='username' onblur='userNamReg()' required='')
                               .invalid-feedback
                                 | Please enter your username.
                           .col-12
-                            input#yourPassword.form-control(placeholder='Password' type='password' name='password' required='')
+                            input#yourPassword.form-control(placeholder='Password' type='password' name='password' onblur='userPassReg()' required='')
                             .invalid-feedback
                               | Please enter your password!
                           .col-12

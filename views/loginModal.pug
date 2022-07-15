@@ -50,17 +50,17 @@ head
                             label.form-label.mb-0(for='yourUsername' style='color: rgba(249, 231, 209, 0.854)') Username
                             .input-group.has-validation
                               span#inputGroupPrepend.input-group-text @
-                              input#yourUsername.form-control(placeholder='Username / Email' type='text' name='username' required)
+                              input#yourUsername.form-control(placeholder='Username / Email' type='text' name='username' onblur='userNamLogin()' required='')
                               .invalid-feedback
                                 | Please enter your username.
                           .col-12
                             label.form-label.mb-0(for='yourPassword' style='color: rgba(249, 231, 209, 0.854)') Password
-                            input#yourPassword.form-control(placeholder='Password' type='password' name='password' required)
+                            input#yourPassword.form-control(placeholder='Password' type='password' name='password' onblur='userPassLogin()' required='')
                             .invalid-feedback
                               | Please enter your password!
                           .col-12
                             label.form-label.mb-0(for='authorizationSelect' style='color: rgba(249, 231, 209, 0.854)') Authorization
-                            select#authorizationSelect.form-select(name='authorization' onblur='userAuthorLogin()' aria-label='authorization' required)
+                            select#authorizationSelect.form-select(name='authorization' onblur='userAuthorLogin()' aria-label='authorization' required='')
                               option(selected='' disabled='' value='') Select Authorization:
                               option(value='1') Director
                               option(value='2') Manager
