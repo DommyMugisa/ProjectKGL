@@ -16,22 +16,22 @@ head
   link(rel='stylesheet' href='/css/index.css')
 nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
   .container-fluid
-    a.navbar-brand(href='./indexDirector.html') KGL Ltd.
+    a.navbar-brand(href='../director') KGL Ltd.
     button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
       span.navbar-toggler-icon
     #navbarNavDropdown.collapse.navbar-collapse.justify-content-end
       ul.navbar-nav.mainNavbar
         li.nav-item.mainNav
-          a.nav-link(style='word-wrap: normal; max-width: 125px; text-align: center;' aria-current='page' href='./indexDirector.html') Dashboard (Director)
+          a.nav-link(style='word-wrap: normal; max-width: 125px; text-align: center;' aria-current='page' href='../director') Dashboard (Director)
         // Make a way back to Director from Manager via the routes
         li.nav-item.mainNav
-          a.nav-link(style='word-wrap: normal; max-width: 125px; text-align: center;' href='./dirMangDash.html') Dashboard (Manager)
+          a.nav-link(style='word-wrap: normal; max-width: 125px; text-align: center;' href='./managerDash') Dashboard (Manager)
         li.nav-item.mainNav
-          a.nav-link(href='./directorPurchases.html') Purchases
+          a.nav-link(href='./purchases') Purchases
         li.nav-item.mainNav
-          a.nav-link(href='./directorSales.html') Sales
+          a.nav-link(href='./sales') Sales
         li.nav-item.mainNav
-          a.nav-link(href='./directorSuppliers.html') Suppliers
+          a.nav-link(href='./suppliers') Suppliers
         li.nav-item.mainNav
           a.nav-link.active(href='#') Creditors
         li.nav-item.dropdown.mainNav
@@ -57,7 +57,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
             li
               hr.dropdown-divider
             li
-              a.dropdown-item.d-flex.align-items-center(href='../login+registration/loginModal.html')
+              a.dropdown-item.d-flex.align-items-center(href='../login')
                 i.bi.bi-box-arrow-right
                 span Sign Out
 .card.mb-0
@@ -209,8 +209,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
             h1 Profile
             nav
               ol.breadcrumb.profileCrumb
-                li.breadcrumb-item
-                  a(href='index.html') Home
+                li.breadcrumb-item Home
                 li.breadcrumb-item Users
                 li.breadcrumb-item.active Profile
           // End Page Title

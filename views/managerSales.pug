@@ -16,21 +16,21 @@ head
   link(rel='stylesheet' href='/css/index.css')
 nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
   .container-fluid
-    a.navbar-brand(href='./indexManager.html') KGL Ltd.
+    a.navbar-brand(href='../manager') KGL Ltd.
     button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
       span.navbar-toggler-icon
     #navbarNavDropdown.collapse.navbar-collapse.justify-content-end
       ul.navbar-nav.mainNavbar
         li.nav-item.mainNav
-          a.nav-link(aria-current='page' href='./indexManager.html') Dashboard
+          a.nav-link(aria-current='page' href='../manager') Dashboard
         li.nav-item.mainNav
-          a.nav-link(href='./managerPurchases.html') Purchases
+          a.nav-link(href='./purchases') Purchases
         li.nav-item.mainNav
           a.nav-link.active(href='#') Sales
         li.nav-item.mainNav
-          a.nav-link(href='./managerSuppliers.html') Suppliers
+          a.nav-link(href='./suppliers') Suppliers
         li.nav-item.mainNav
-          a.nav-link(href='./managerCreditors.html') Creditors
+          a.nav-link(href='./creditors') Creditors
         li.nav-item.dropdown
           a.nav-link.nav-icon(href='#' data-bs-toggle='dropdown')
             i.bi.bi-bell
@@ -66,7 +66,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
             li
               hr.dropdown-divider
             li
-              a.dropdown-item.d-flex.align-items-center(href='../login+registration/loginModal.html')
+              a.dropdown-item.d-flex.align-items-center(href='../login')
                 i.bi.bi-box-arrow-right
                 span Sign Out
 .card.mb-0
@@ -480,8 +480,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
             h1 Profile
             nav
               ol.breadcrumb.profileCrumb
-                li.breadcrumb-item
-                  a(href='index.html') Home
+                li.breadcrumb-item Home
                 li.breadcrumb-item Users
                 li.breadcrumb-item.active Profile
           // End Page Title
