@@ -1,24 +1,24 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
-const Manager = require('../models/Manager');
-
 const router = express.Router();
+
+const User = require('../models/User');
 
 router.get('/', (req, res) => {
   res.render('registerModal', {title: 'Register'});
 });
 
 router.post('/', async (req, res) => {
-  const manager = new Manager(req.body);
-  await Manager.register(manager, req.body.password, (err) => {
+  const user = new User(req.body);
+  await User.register(user, req.body.password, (err) => {
+    console.log(user)
     if (err) {
       res.status(400).render('registerModal', {
-        title: 'users',
+        title: 'Register User',
       });
       console.log(err);
     } else {
-      res.redirect('/indexSales');
+      res.redirect('/login');
     }
   });
 });

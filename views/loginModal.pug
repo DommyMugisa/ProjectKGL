@@ -7,8 +7,8 @@ head
   meta(content='' name='keywords')
   link(href='/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
   link(href='/vendor/bootstrap-icons/bootstrap-icons.css' rel='stylesheet')
-  link(href='https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css' rel='stylesheet' type='text/css')
-  script(src='https://cdn.jsdelivr.net/npm/simple-datatables@latest' type='text/javascript')
+  //- link(href='https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css' rel='stylesheet' type='text/css')
+  //- script(src='https://cdn.jsdelivr.net/npm/simple-datatables@latest' type='text/javascript')
   link(rel='stylesheet' href='/css/style.css')
   link(rel='stylesheet' href='/css/index.css')
   script(src='https://code.jquery.com/jquery-3.6.0.js')
@@ -45,7 +45,7 @@ head
                             | Login to Your Account
                           p.text-center.small(style='color: rgba(249, 231, 209, 0.854)')
                             | Enter your username &amp; password to login
-                        form.row.g-3.needs-validation(name='userlogin')
+                        form.row.g-3(name='userlogin' method='post' action='/login')
                           .col-12
                             label.form-label.mb-0(for='yourUsername' style='color: rgba(249, 231, 209, 0.854)') Username
                             .input-group.has-validation
@@ -59,18 +59,11 @@ head
                             .invalid-feedback
                               | Please enter your password!
                           .col-12
-                            label.form-label.mb-0(for='authorizationSelect' style='color: rgba(249, 231, 209, 0.854)') Authorization
-                            select#authorizationSelect.form-select(name='authorization' onblur='userAuthorLogin()' aria-label='authorization' required='')
-                              option(selected='' disabled='' value='') Select Authorization:
-                              option(value='1') Director
-                              option(value='2') Manager
-                              option(value='3') Sales Agent
-                          .col-12
                             .form-check
                               input#rememberMe.form-check-input(type='checkbox' name='remember' value='true')
                               label.form-check-label(for='rememberMe' style='color: rgba(249, 231, 209, 0.854)') Remember me
                           .col-12
-                            button.btn.btn-dark.w-100.mt-1(type='submit' href='#')
+                            button.btn.btn-dark.w-100.mt-1(type='submit' href='/login/login')
                               | Login
                           .col-12
                             p.small.mb-0.pt-2(style='\
@@ -86,6 +79,6 @@ head
       .modal-footer.welcm(style='justify-content: center; height: 50px')
         p.titlez Copyright 2022 &copy; Dev&apos;d By Dom
 script(src='/vendor/bootstrap/js/bootstrap.bundle.min.js')
-script(src='/vendor/simple-datatables/simple-datatables.js')
+//- script(src='/vendor/simple-datatables/simple-datatables.js')
 script(src='/js/main.js')
 script(src='/js/index.js')

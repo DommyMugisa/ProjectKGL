@@ -12,9 +12,6 @@ const expressSession = require("express-session")({
 });
 
 // Routing Section
-const managerListRoute = require("./routes/managerListRoute");
-const ProductsRoutes = require("./routes/ProductsRoutes");
-
 const registerroutes = require("./routes/registerroutes");
 const loginRoutes = require("./routes/loginRoutes");
 const salesRoutes = require("./routes/salesRoutes");
@@ -25,7 +22,8 @@ const directorRoutes = require("./routes/directorRoutes");
 const config = require("./config/database");
 
 // Models Section
-const Manager = require("./models/Manager");
+// const Manager = require("./models/Manager");
+const User = require("./models/User");
 
 //instatiating the express server
 const server = express();
@@ -57,9 +55,9 @@ server.use(expressSession);
 server.use(passport.initialize());
 server.use(passport.session());
 
-passport.use(Manager.createStrategy());
-passport.serializeUser(Manager.serializeUser());
-passport.deserializeUser(Manager.deserializeUser());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 //creating a login checker
 // const loginchecker = function(req,res,next) {
@@ -72,14 +70,13 @@ passport.deserializeUser(Manager.deserializeUser());
 
 server.use("/register", registerroutes);
 server.use("/login", loginRoutes);
-server.use("/", loginRoutes);
 server.use("/sales", salesRoutes);
 server.use("/manager", managerRoutes);
 server.use("/director", directorRoutes);
 
-server.use("/managers", managerListRoute);
-server.use("/product", ProductsRoutes);
-server.use("/productList", ProductsRoutes);
+server. get('/nonuser', (req,res) => {
+  res.render('nonuserform')
+});
 
 // handling non existing routes
 server.get("*", (req, res) => {

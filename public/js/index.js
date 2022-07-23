@@ -70,7 +70,7 @@ const inventSell = () => {
   let addSalePrc = document.addInventory.sellingprice;
 
   let lettrLen = addSalePrc.value.length;
-  if (lettrLen == 0 || lettrLen < 5 || lettrLen > 15) {
+  if (lettrLen == 0 || lettrLen < 3 || lettrLen > 15) {
     addSalePrc.focus();
     addSalePrc.style.border = "2px solid red";
     //   alert('Selling Price Should be between 5 & 15 Characters!');
@@ -127,7 +127,7 @@ const supplyCateg = () => {
   let suppCat = document.addInventory.supplycategory;
 
   let lettrLen = suppCat.value;
-  if (lettrLen != 1 && lettrLen != 2 && lettrLen != 3) {
+  if (lettrLen != 'Individual' && lettrLen != 'Enterprise' && lettrLen != 'KGL_Farm') {
     suppCat.focus();
     suppCat.style.border = "2px solid red";
     //   alert('Select a Category from the list!');
@@ -144,7 +144,7 @@ const inventSuppNam = () => {
     // alert('Supplier Name Must Be Between 3 and 20 Characters!');
     return false;
   }
-  let letters = /^[A-Za-z]+$/;
+  let letters = /^[A-Za-z ]+$/;
   if (addSupp.value.match(letters)) {
     return true;
   } else {
@@ -1201,22 +1201,22 @@ const userTIN = () => {
 
 
 //Validation user Login+Register
-const userAuthorLogin = () => {
-  let suppCat = document.userlogin.authorization;
+// const userAuthorLogin = () => {
+//   let suppCat = document.userlogin.authorization;
 
-  let lettrLen = suppCat.value;
-  if (lettrLen != 1 && lettrLen != 2 && lettrLen != 3) {
-    suppCat.focus();
-    suppCat.style.border = "2px solid red";
-    //   alert('Select a Category from the list!');
-    return false;
-  }
-};
+//   let lettrLen = suppCat.value;
+//   if (lettrLen != 1 && lettrLen != 2 && lettrLen != 3) {
+//     suppCat.focus();
+//     suppCat.style.border = "2px solid red";
+//     //   alert('Select a Category from the list!');
+//     return false;
+//   }
+// };
 const userAuthorReg = () => {
   let suppCat = document.registeruser.authorization;
 
   let lettrLen = suppCat.value;
-  if (lettrLen != 1 && lettrLen != 2 && lettrLen != 3) {
+  if (lettrLen != 'Director' && lettrLen != 'Manager' && lettrLen != 'Sales') {
     suppCat.focus();
     suppCat.style.border = "2px solid red";
     //   alert('Select a Category from the list!');
@@ -1235,7 +1235,7 @@ const userPassLogin = () =>{
 const userNamLogin = () =>{
   let username = document.userlogin.username;
   let nameLen = username.value.length;
-  if (nameLen == 0 || passLen < 5 || passLen > 25){
+  if (nameLen == 0 || nameLen < 5 || nameLen > 25){
     username.focus();
     username.style.border = "2px solid red";
     // alert('');
@@ -1267,7 +1267,7 @@ const userFullNamReg = () =>{
     username.style.border = "2px solid red";
     // alert('');
   }
-  let letters = /^[A-Za-z]+$/;
+  let letters = /^[A-Za-z ]+$/;
   if (username.value.match(letters)) {
     return true;
   } else {
@@ -1276,3 +1276,16 @@ const userFullNamReg = () =>{
     // alert('');
   }
 };
+
+// const validateRole = (role, errorrole) => {
+//   let role = document.getElementById('authorizationSelect')
+//   if (role.value == 'default'){
+//     errorrole.innerHTML = 'User Authorization is required';
+//     errorrole.style.color = 'red';
+//     errorrole.style.fontSize = '3px';
+//   return false;
+//   } else {
+//     errorrole.innerHTML = '';
+//     return true;
+//   }
+// };

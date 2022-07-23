@@ -8,8 +8,8 @@ head
   link(href='/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
   link(href='/vendor/bootstrap-icons/bootstrap-icons.css' rel='stylesheet')
   // Datatables CDN
-  link(href='https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css' rel='stylesheet' type='text/css')
-  script(src='https://cdn.jsdelivr.net/npm/simple-datatables@latest' type='text/javascript')
+  //- link(href='https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css' rel='stylesheet' type='text/css')
+  //- script(src='https://cdn.jsdelivr.net/npm/simple-datatables@latest' type='text/javascript')
   link(rel='stylesheet' href='/css/style.css')
   link(rel='stylesheet' href='/css/index.css')
   script(src='https://code.jquery.com/jquery-3.6.0.js')
@@ -43,32 +43,32 @@ head
                             span(style='text-decoration:underline 1px solid rgba(249, 231, 209, 0.854);') Request
                             br
                             |  for user authorization.
-                        form.row.g-4.needs-validation(name='registeruser')
+                        form.row.g-4(action='/register' method='POST' name='registeruser')
                           .col-12
-                            input#yourName.form-control(placeholder='Full Name' type='text' name='fullname' onblur='userFullNamReg()' required='')
+                            input#yourName.form-control(placeholder='Full Name' type='text' name='fullname' onblur='userFullNamReg()' required)
                             .invalid-feedback
                               | Please, enter your name!
                           .col-12
                             .input-group.has-validation
                               span#inputGroupPrepend.input-group-text @
-                              input#yourUsername.form-control(placeholder='Username / Email' type='text' name='username' onblur='userNamReg()' required='')
+                              input#yourUsername.form-control(placeholder='Username / Email' type='text' name='email' onblur='userNamReg()' required)
                               .invalid-feedback
                                 | Please enter your username.
                           .col-12
-                            input#yourPassword.form-control(placeholder='Password' type='password' name='password' onblur='userPassReg()' required='')
+                            input#yourPassword.form-control(placeholder='Password' type='password' name='password' onblur='userPassReg()' required)
                             .invalid-feedback
                               | Please enter your password!
                           .col-12
-                            select#authorizationSelect.form-select(name='authorization' onblur='userAuthorReg()' aria-label='authorization' required='')
+                            select#authorizationSelect.form-select(name='authorization' onblur='userAuthorReg()' aria-label='authorization' required)
                               option(selected='' disabled='' value='') Select Authorization:
-                              option(value='1') Director
-                              option(value='2') Manager
-                              option(value='3') Sales Agent
+                              option(value='Director') Director
+                              option(value='Manager') Manager
+                              option(value='Sales') Sales Agent
                             .valid-feedback Supplier Category is valid!
                             .invalid-feedback Supplier Category is not valid!
                           .col-12
                             .form-check
-                              input#acceptTerms.form-check-input(name='terms' type='checkbox' value='' required='')
+                              input#acceptTerms.form-check-input(name='terms' type='checkbox' value='true' required)
                               label.form-check-label(for='acceptTerms' style='color:rgba(249, 231, 209, 0.854);')
                                 | I agree and accept the 
                                 a(href='#' style='color:rgba(249, 231, 209, 0.854); text-decoration:underline 1px solid rgba(249, 231, 209, 0.854);')
@@ -77,7 +77,7 @@ head
                               .invalid-feedback
                                 | You must agree before submitting.
                           .col-12
-                            button.btn.btn-dark.w-100(type='submit')
+                            button.btn.btn-dark.w-100(type='submit' href='/register/')
                               | Request Authorization
                           .col-12(style='text-align:center;')
                             p.small.mb-0(style='color:rgba(249, 231, 209, 0.854);')
@@ -88,6 +88,6 @@ head
       .modal-footer.welcm(style='justify-content:center; height: 50px;')
         p.titlez Copyright 2022 &copy; Dev&apos;d By Dom
 script(src='/vendor/bootstrap/js/bootstrap.bundle.min.js')
-script(src='/vendor/simple-datatables/simple-datatables.js')
+//- script(src='/vendor/simple-datatables/simple-datatables.js')
 script(src='/js/main.js')
 script(src='/js/index.js')

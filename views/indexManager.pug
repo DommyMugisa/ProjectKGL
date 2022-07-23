@@ -9,561 +9,554 @@ head
   link(href='/vendor/bootstrap/css/bootstrap.min.css' rel='stylesheet')
   link(href='/vendor/bootstrap-icons/bootstrap-icons.css' rel='stylesheet')
   // Datatables CDN
-  link(href='https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css' rel='stylesheet' type='text/css')
-  script(src='https://cdn.jsdelivr.net/npm/simple-datatables@latest' type='text/javascript')
+  //- link(href='https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css' rel='stylesheet' type='text/css')
+  //- script(src='https://cdn.jsdelivr.net/npm/simple-datatables@latest' type='text/javascript')
   // Template Main CSS File
   link(rel='stylesheet' href='/css/style.css')
   link(rel='stylesheet' href='/css/index.css')
-nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
-  .container-fluid
-    a.navbar-brand(href='#') KGL Ltd.
-    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
-      span.navbar-toggler-icon
-    #navbarNavDropdown.collapse.navbar-collapse.justify-content-end
-      ul.navbar-nav.mainNavbar
-        li.nav-item.mainNav
-          a.nav-link.active(aria-current='page' href='#') Dashboard
-        li.nav-item.mainNav
-          a.nav-link(href='./manager/purchases') Purchases
-        li.nav-item.mainNav
-          a.nav-link(href='./manager/sales') Sales
-        li.nav-item.mainNav
-          a.nav-link(href='./manager/suppliers') Suppliers
-        li.nav-item.mainNav
-          a.nav-link(href='./manager/creditors') Creditors
-        li.nav-item.dropdown
-          a.nav-link.nav-icon(href='#' data-bs-toggle='dropdown')
-            i.bi.bi-bell
-            span.badge.bg-primary.badge-number 2
-          // End Notification Icon
-          ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow.notifications
-            li.dropdown-header.d-flex.justify-content-end(style='margin-left:5px; margin-right:5px; padding-left: 10px; padding-right: 10px;')
-              | You have 2 new notifications
-              a.dropdown-item.d-flex.align-items-center.pt-0.pb-0(data-bs-toggle='modal' data-bs-target='#largeModalAccts' onclick='acctSettingModal()')
-                span.badge.rounded-pill.bg-primary.p-2.mt-0.mb-0.ms-2 View all
-            li
-              hr.dropdown-divider
-        li.nav-item.dropdown.mainNav
-          a.nav-link.nav-profile.d-flex.align-items-center.pe-0(href='#' data-bs-toggle='dropdown')
-            img.profileImg(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' alt='Profile')
-            span.d-none.d-md-block.dropdown-toggle.ps-2 Dominic.M
-          ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow.profile(aria-labelledby='navbarDropdownMenuLink')
-            li.dropdown-header
-              h6 Dominic Mugisa
-              span Manager
-            li
-              hr.dropdown-divider
-            li
-              a.dropdown-item.d-flex.align-items-center(data-bs-toggle='modal' data-bs-target='#largeModalprofile' onclick='profileModal()')
-                i.bi.bi-person
-                span My Profile
-            li
-              hr.dropdown-divider
-            li
-              a.dropdown-item.d-flex.align-items-center(data-bs-toggle='modal' data-bs-target='#largeModalAccts' onclick='acctSettingModal()' style='vertical-align:middle;')
-                i.bi.bi-bell
-                span Notifications
-            li
-              hr.dropdown-divider
-            li
-              a.dropdown-item.d-flex.align-items-center(href='../login')
-                i.bi.bi-box-arrow-right
-                span Sign Out
-.card.mb-0
-  .card-body.bodyCard
-    // Bordered Tabs
-    ul#borderedTab.nav.nav-tabs.nav-tabs-bordered.mainNav-tabs-bordered(role='tablist')
-      li.nav-item.mainNav(role='presentation')
-        button#home-tabMain.nav-link.active(data-bs-toggle='tab' data-bs-target='#bordered-home' type='button' role='tab' aria-controls='home' aria-selected='true')
-          | Inventory
-      li.nav-item.mainNav(role='presentation')
-        button#profile-tabMain.nav-link(data-bs-toggle='tab' data-bs-target='#bordered-profile' type='button' role='tab' aria-controls='profile' aria-selected='false')
-          | Stock
-    #carouselExampleSlidesOnly.carousel.slide(data-bs-ride='carousel')
-      .carousel-inner
-        .carousel-item.active
-          img.d-block.w-100(src='/img/istockphoto-181068280-1024x1024.jpg' alt='...')
-    #borderedTabContent.tab-content.pt-3
-      #bordered-home.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='home-tab')
-        .container
-          .row
-            .card.mb-1(style='background-color:antiquewhite; border: 1px solid rgba(70, 71, 95, 0.803);')
-              .card-body.pb-0
-                h5.card-title.pb-0 Inventory
-                // Table with stripped rows
-                table.table.table-striped.datatable.table-reponsive
-                  thead
-                    tr
-                      th(scope='col') #
-                      th(scope='col') Name of Produce
-                      th(scope='col') Type of Produce
-                      th(scope='col') Purchase Price (Ugx/Kg)
-                      th(scope='col') Selling Price (Ugx/Kg)
-                      th(scope='col') Supplier Category
-                  tbody
-                    tr
-                      th(scope='row') 1
-                      td Beans
-                      td Pods
-                      td 4,000
-                      td 5,000
-                      td Individual Farmer
-                    tr
-                      th(scope='row') 2
-                      td Maize
-                      td Cobs
-                      td 3,500
-                      td 4,500
-                      td Enterprise
-                    tr
-                      th(scope='row') 3
-                      td Cow Peas
-                      td Pods
-                      td 4,500
-                      td 6,000
-                      td KGL Farm: Matugga
-                    tr
-                      th(scope='row') 4
-                      td G.Nuts
-                      td Nuts
-                      td 3,400
-                      td 7,000
-                      td KGL Farm: Maganjo
-                    tr
-                      th(scope='row') 5
-                      td Soy Beans
-                      td Seeds
-                      td 4,700
-                      td 8,000
-                      td Individual Farmer
-                // End Table with stripped rows
-          .row.justify-content-end
-            // the button below should lead to a model to create a new inventory item, w/c item should become retrievable by the data-table.
-            .col-sm-2
-              button.btn.btn-dark(type='button' data-bs-toggle='modal' data-bs-target='#mediumModal')
-                | Add To Inventory
-              #mediumModal.modal.fade(tabindex='-1')
-                .modal-dialog.modal-md
-                  .modal-content
-                    .modal-header.fresher
-                      h5.modal-title Add Item To Inventory
-                      button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-                    .modal-body(style='background-color:rgba(43, 45, 79, 0.531);')
-                      .card
-                        .card-body
-                          h5.card-title Item Details
-                          // Floating Labels Form
-                          form.row.g-3.needs-validation(name='addInventory' onsubmit='')
-                            .col-md-6
-                              .form-floating
-                                input#itemname.form-control(required onblur='inventName()' name='itemname' type='text' placeholder='Item Name')
-                                label.form-label(for='itemname') Item Name
-                                //
-                                  <div class="valid-feedback">Item name is valid!</div>
-                                  <div class="invalid-feedback">Item name is not valid!</div>
-                            .col-md-6
-                              .form-floating
-                                input#floatingEmail.form-control(required onblur='inventType()' name='itemtype' type='text' placeholder='Item Type')
-                                label.form-label(for='floatingEmail') Item Type
-                                //
-                                  <div class="valid-feedback">Item Type is valid!</div>
-                                  <div class="invalid-feedback">Item Type is not valid!</div>
-                            .col-md-6
-                              .form-floating
-                                input#floatingPassword.form-control(required onblur='inventPurch()' name='purchaseprice' type='text' placeholder='Purchase Price')
-                                label.form-label(for='floatingPassword') Purchase Price
-                                //
-                                  <div class="valid-feedback">Purchase Price is valid!</div>
-                                  <div class="invalid-feedback">Purchase Price is not valid!</div>
-                            .col-md-6
-                              .col-md-12
+body
+  nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
+    .container-fluid
+      a.navbar-brand(href='#') KGL Ltd.
+      button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNavDropdown' aria-controls='navbarNavDropdown' aria-expanded='false' aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      #navbarNavDropdown.collapse.navbar-collapse.justify-content-end
+        ul.navbar-nav.mainNavbar
+          li.nav-item.mainNav
+            a.nav-link.active(aria-current='page' href='#') Dashboard
+          li.nav-item.mainNav
+            a.nav-link(href='./manager/purchases') Purchases
+          li.nav-item.mainNav
+            a.nav-link(href='./manager/sales') Sales
+          li.nav-item.mainNav
+            a.nav-link(href='./manager/suppliers') Suppliers
+          li.nav-item.mainNav
+            a.nav-link(href='./manager/creditors') Creditors
+          li.nav-item.dropdown
+            a.nav-link.nav-icon(href='#' data-bs-toggle='dropdown')
+              i.bi.bi-bell
+              span.badge.bg-primary.badge-number 2
+            // End Notification Icon
+            ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow.notifications
+              li.dropdown-header.d-flex.justify-content-end(style='margin-left:5px; margin-right:5px; padding-left: 10px; padding-right: 10px;')
+                | You have 2 new notifications
+                a.dropdown-item.d-flex.align-items-center.pt-0.pb-0(data-bs-toggle='modal' data-bs-target='#largeModalAccts' onclick='acctSettingModal()')
+                  span.badge.rounded-pill.bg-primary.p-2.mt-0.mb-0.ms-2 View all
+              li
+                hr.dropdown-divider
+          li.nav-item.dropdown.mainNav
+            a.nav-link.nav-profile.d-flex.align-items-center.pe-0(href='#' data-bs-toggle='dropdown')
+              img.profileImg(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' alt='Profile')
+              span.d-none.d-md-block.dropdown-toggle.ps-2 Dominic.M
+            ul.dropdown-menu.dropdown-menu-end.dropdown-menu-arrow.profile(aria-labelledby='navbarDropdownMenuLink')
+              li.dropdown-header
+                h6 Dominic Mugisa
+                span Manager
+              li
+                hr.dropdown-divider
+              li
+                a.dropdown-item.d-flex.align-items-center(data-bs-toggle='modal' data-bs-target='#largeModalprofile' onclick='profileModal()')
+                  i.bi.bi-person
+                  span My Profile
+              li
+                hr.dropdown-divider
+              li
+                a.dropdown-item.d-flex.align-items-center(data-bs-toggle='modal' data-bs-target='#largeModalAccts' onclick='acctSettingModal()' style='vertical-align:middle;')
+                  i.bi.bi-bell
+                  span Notifications
+              li
+                hr.dropdown-divider
+              li
+                a.dropdown-item.d-flex.align-items-center(href='../login/logout')
+                  i.bi.bi-box-arrow-right
+                  span Sign Out
+  .card.mb-0
+    .card-body.bodyCard
+      // Bordered Tabs
+      ul#borderedTab.nav.nav-tabs.nav-tabs-bordered.mainNav-tabs-bordered(role='tablist')
+        li.nav-item.mainNav(role='presentation')
+          button#home-tabMain.nav-link.active(data-bs-toggle='tab' data-bs-target='#bordered-home' type='button' role='tab' aria-controls='home' aria-selected='true')
+            | Inventory
+        li.nav-item.mainNav(role='presentation')
+          button#profile-tabMain.nav-link(data-bs-toggle='tab' data-bs-target='#bordered-profile' type='button' role='tab' aria-controls='profile' aria-selected='false')
+            | Stock
+      #carouselExampleSlidesOnly.carousel.slide(data-bs-ride='carousel')
+        .carousel-inner
+          .carousel-item.active
+            img.d-block.w-100(src='/img/istockphoto-181068280-1024x1024.jpg' alt='...')
+      #borderedTabContent.tab-content.pt-3
+        #bordered-home.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='home-tab')
+          .container
+            .row
+              .card.mb-1(style='background-color:antiquewhite; border: 1px solid rgba(70, 71, 95, 0.803);')
+                .card-body.pb-0
+                  h5.card-title.pb-0 Inventory
+                  // Table with stripped rows
+                  table.table.table-striped.datatable.table-reponsive
+                    thead
+                        tr
+                          th(scope='col') Name of Produce
+                          th(scope='col') Type of Produce
+                          th(scope='col') Purchase Price (Ugx/Kg)
+                          th(scope='col') Selling Price (Ugx/Kg)
+                          th(scope='col') Supplier Category
+                    tbody
+                    if inventories.length
+                      each inventory in inventories
+                        tr
+                          td #{inventory.itemname}
+                          td #{inventory.itemtype}
+                          td #{inventory.purchaseprice}
+                          td #{inventory.sellingprice}
+                          td #{inventory.supplycategory}
+                          td 
+                              a.btn.btn-success.btn-block(data-bs-toggle='modal' data-bs-target='#mediumModalEdit' href='/manager/edit/'+inventory._id) Edit
+                          td
+                              form.delete(method="post" action='/manager/delete')
+                                  input(type="hidden", placeholder="", name="id", value=inventory._id)
+                                  button.btn.btn-danger(type="submit") Delete
+                  // End Table with stripped rows
+            .row.justify-content-end
+              // the button below should lead to a model to create a new inventory item, w/c item should become retrievable by the data-table.
+              .col-sm-2
+                button.btn.btn-dark(type='button' data-bs-toggle='modal' data-bs-target='#mediumModal')
+                  | Add To Inventory
+                #mediumModal.modal.fade(tabindex='-1')
+                  .modal-dialog.modal-md
+                    .modal-content
+                      .modal-header.fresher
+                        h5.modal-title Add Item To Inventory
+                        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                      .modal-body(style='background-color:rgba(43, 45, 79, 0.531);')
+                        .card
+                          .card-body
+                            h5.card-title Item Details
+                            // Floating Labels Form
+                            form.row.g-3(name='addInventory' method='post' action='/manager')
+                              .col-md-6
+                                .form-floating
+                                  input#itemname.form-control(required onblur='inventName()' name='itemname' type='text' placeholder='Item Name')
+                                  label.form-label(for='itemname') Item Name
+                              .col-md-6
+                                .form-floating
+                                  input#floatingEmail.form-control(required onblur='inventType()' name='itemtype' type='text' placeholder='Item Type')
+                                  label.form-label(for='floatingEmail') Item Type
+                              .col-md-6
+                                .form-floating
+                                  input#floatingPassword.form-control(required onblur='inventPurch()' name='purchaseprice' type='text' placeholder='Purchase Price')
+                                  label.form-label(for='floatingPassword') Purchase Price
+                              .col-md-6
                                 .form-floating
                                   input#floatingCity.form-control(required onblur='inventSell()' name='sellingprice' type='text' placeholder='Selling Price')
                                   label.form-label(for='floatingCity') Selling Price
-                                  //
-                                    <div class="valid-feedback">Selling Price is valid!</div>
-                                    <div class="invalid-feedback">Selling Price is not valid!</div>
-                            .col-md-6
-                              .col-md-12
+                              .col-md-6
                                 .form-floating
                                   input#floatingCity.form-control(required onblur='inventLeadTime()' name='leadtime' type='text' placeholder='Lead Time')
                                   label(for='floatingCity') Lead Time
-                                  //
-                                    <div class="valid-feedback">Lead Time is valid!</div>
-                                    <div class="invalid-feedback">Lead Time is not valid!</div>
-                            .col-md-6
-                              .col-md-12
+                              .col-md-6
                                 .form-floating
                                   input#floatingCity.form-control(required onblur='inventCycleTime()' name='cycletime' type='text' placeholder='Cycle Time')
                                   label(for='floatingCity') Cycle Time
-                                  //
-                                    <div class="valid-feedback">Cycle Time is valid!</div>
-                                    <div class="invalid-feedback">Cycle Time is not valid!</div>
-                            .col-md-6
-                              .form-floating.mb-3
-                                select#floatingSelect.form-select(required onblur='supplyCateg()' name='supplycategory' aria-label='Supplier Category')
-                                  option(selected='' disabled='') Select Category
-                                  option(value='1') Individual Farmer
-                                  option(value='2') Enterprise
-                                  option(value='3') KGL Farm
-                                label(for='floatingSelect') Supplier Category
-                                //
-                                  <div class="valid-feedback">Supplier Category is valid!</div>
-                                  <div class="invalid-feedback">Supplier Category is not valid!</div>
-                            .col-md-6
-                              .form-floating
-                                input#floatingZip.form-control(required onblur='inventSuppNam()' name='suppliername' type='text' placeholder='Name of Supplier')
-                                label.form-label(for='floatingZip') Name of Supplier
-                                //
-                                  <div class="valid-feedback">Supplier Name is valid!</div>
-                                  <div class="invalid-feedback">Supplier Name is not valid!</div>
-                            .text-center
-                              button.btn.btn-dark(type='submit' name='submitbutton' onsubmit='')
-                                | Submit
-                              button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
-                                | Reset
-                          // End floating Labels Form
-                    //
-                      <div class="modal-footer">
-                      <button
-                      type="button"
-                      class="btn btn-dark"
-                      data-bs-dismiss="modal"
-                      >
-                      Close
-                      </button>
-                      <button type="button" class="btn btn-dark">
-                      Save changes
-                      </button>
-                      </div>
-              // End Large Modal
-      #bordered-profile.tab-pane.fade(role='tabpanel' aria-labelledby='profile-tab')
-        .container
-          .row
-            .card.mb-1(style='background-color:antiquewhite; border: 1px solid rgba(70, 71, 95, 0.803);')
-              .card-body.pb-0
-                h5.card-title.pb-0 Stock
-                // Table with stripped rows
-                table.table.table-striped.datatable
-                  thead
-                    tr
-                      th(scope='col') #
-                      th(scope='col') Name of Produce
-                      th(scope='col') SKU No.
-                      th(scope='col') Quantity (Kgs)
-                      th(scope='col') Supplier(s)
-                      th(scope='col') Avg Lead Time
-                      th(scope='col') Avg Cycle Time
-                  tbody
-                    tr
-                      th(scope='row') 1
-                      td Maize
-                      td 005
-                      td 280
-                      td James Kyeba
-                      td 2 days
-                      td 2 weeks/100 kgs
-                    tr
-                      th(scope='row') 2
-                      td Cow peas
-                      td 007
-                      td 35
-                      td Kenny Rogers
-                      td 2 days
-                      td 10 days/100 kgs
-                    tr
-                      th(scope='row') 3
-                      td Soy Beans
-                      td 001
-                      td 450
-                      td Peter Kirya, Sean Ssozi
-                      td 3 days
-                      td 2 weeks/150 kgs
-                    tr
-                      th(scope='row') 4
-                      td Ground Nuts
-                      td 006
-                      td 340
-                      td Vanessa Nalubega
-                      td 2 days
-                      td 5 days/200 kgs
-                    tr
-                      th(scope='row') 5
-                      td Beans
-                      td 002
-                      td 470
-                      td Sean Ssozi
-                      td 1 day
-                      td 5 days/300 kgs
-                // End Table with stripped rows
-    // End Bordered Tabs
-// Profile Modal
-#largeModalprofile.modal.fade(tabindex='-1')
-  .modal-dialog.modal-lg
-    .modal-content
-      .modal-header.fresher
-        h5.modal-title User Profile
-        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-      .modal-body
-        // #main
-        main#main.main
-          .pagetitle.profiletitle
-            h1 Profile
-            nav
-              ol.breadcrumb.profileCrumb
-                li.breadcrumb-item Home
-                li.breadcrumb-item Users
-                li.breadcrumb-item.active Profile
-          // End Page Title
-      section.section.profile
-        .row
-          .col-lg-4
-            .card
-              .card-body.profile-card.pt-4.d-flex.flex-column.align-items-center
-                img.rounded-circle(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' alt='Profile')
-                h2 Dominic Mugisa
-                h3 Manager
-                //
-                  <div class="social-links mt-2">
-                  <a href="#" class="twitter"
-                  ><i class="bi bi-twitter"></i
-                  ></a>
-                  <a href="#" class="facebook"
-                  ><i class="bi bi-facebook"></i
-                  ></a>
-                  <a href="#" class="instagram"
-                  ><i class="bi bi-instagram"></i
-                  ></a>
-                  <a href="#" class="linkedin"
-                  ><i class="bi bi-linkedin"></i
-                  ></a>
-                  </div>
-          .col-lg-8
-            .card
-              .card-body.pt-3
-                // Bordered Tabs
-                ul.nav.nav-tabs.nav-tabs-bordered
-                  li.nav-item
-                    button.nav-link.active(data-bs-toggle='tab' data-bs-target='#profile-overview')
-                      | Overview
-                  li.nav-item
-                    button.nav-link(data-bs-toggle='tab' data-bs-target='#profile-edit')
-                      | Edit Profile
-                  li.nav-item
-                    button.nav-link(data-bs-toggle='tab' data-bs-target='#profile-settings')
-                      | Settings
-                  li.nav-item
-                    button.nav-link(data-bs-toggle='tab' data-bs-target='#profile-change-password')
-                      | Change Password
-                .tab-content.pt-2
-                  #profile-overview.tab-pane.fade.show.active.profile-overview
-                    h5.card-title About
-                    p.small.fst-italic
-                      | Lorem ipsum dolor sit amet, consectetur adipiscing
-                      | elit. Vestibulum hendrerit, ante a sagittis
-                      | posuere, elit nibh convallis nunc, quis faucibus
-                      | sem diam id leo. Vivamus id arcu pellentesque,
-                      | blandit tortor sagittis, facilisis libero. Aenean
-                      | mattis tellus a dui consectetur, et viverra turpis
-                      | aliquam.
-                    h5.card-title Profile Details
-                    .row
-                      .col-lg-3.col-md-4.label
-                        | Full Name
-                      .col-lg-9.col-md-8
-                        | Dominic Mugisa
-                    .row
-                      .col-lg-3.col-md-4.label Company
-                      .col-lg-9.col-md-8
-                        | Karibu Groceries Limited.
-                    .row
-                      .col-lg-3.col-md-4.label Job
-                      .col-lg-9.col-md-8 Manager - Maganjo
-                    .row
-                      .col-lg-3.col-md-4.label Country
-                      .col-lg-9.col-md-8 UGANDA
-                    .row
-                      .col-lg-3.col-md-4.label Address
-                      .col-lg-9.col-md-8
-                        | Kawaga Close, off Kalungi Road, Muyenga,
-                        | Kampala, Uganda.
-                    .row
-                      .col-lg-3.col-md-4.label Phone
-                      .col-lg-9.col-md-8
-                        | +256 759 912 204
-                    .row
-                      .col-lg-3.col-md-4.label Email
-                      .col-lg-9.col-md-8
-                        | d.mugisa@student.ciu.ac.ug
-                  #profile-edit.tab-pane.fade.profile-edit.pt-3
-                    // Profile Edit Form
-                    form(name='editprofile')
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='profileImage') Profile Image
-                        .col-md-8.col-lg-9
-                          img(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' alt='Profile')
-                          .pt-2
-                            a.btn.btn-dark.btn-sm(href='#' title='Upload new profile image')
-                              i.bi.bi-upload
-                            a.btn.btn-danger.btn-sm(href='#' title='Remove my profile image')
-                              i.bi.bi-trash
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='fullName') Full Name
-                        .col-md-8.col-lg-9
-                          input#fullName.form-control(name='fullname' required onblur='profileName()' type='text' placeholder='Full Name' value='')
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='about') About
-                        .col-md-8.col-lg-9
-                          textarea#about.form-control(name='about' required onblur='profileAbout()' style='height: 100px')
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='company') Company
-                        .col-md-8.col-lg-9
-                          input#company.form-control(name='company' required onblur='profileCompany()' type='text' placeholder='Karibu Groceries Limited.' value='')
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='Job') Job
-                        .col-md-8.col-lg-9
-                          input#Job.form-control(name='job' required onblur='profileRole()' type='text' placeholder='Manager' value='')
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='Country') Country
-                        .col-md-8.col-lg-9
-                          input#Country.form-control(name='country' required onblur='profileCountry()' type='text' placeholder='UGANDA' value='')
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='Address') Address
-                        .col-md-8.col-lg-9
-                          input#Address.form-control(name='address' required onblur='profileAddress()' type='text' placeholder='Kawaga Close, off Kalungi Road, Muyenga, Kampala, Uganda.' value='')
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='Phone') Phone
-                        .col-md-8.col-lg-9
-                          input#Phone.form-control(name='phone' required onblur='profilePhone()' type='text' placeholder='--- --- --- ---' value='')
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='Email') Email
-                        .col-md-8.col-lg-9
-                          input#Email.form-control(name='email' required onblur='profileEmail()' type='email' placeholder='email@example.ac.ug' value='')
-                      .text-center
-                        button.btn.btn-dark(type='submit')
-                          | Save Changes
-                    // End Profile Edit Form
-                  #profile-settings.tab-pane.fade.pt-3
-                    // Settings Form
-                    form
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='fullName') Email Notifications
-                        .col-md-8.col-lg-9
-                          .form-check
-                            input#changesMade.form-check-input(type='checkbox' checked='')
-                            label.form-check-label(for='changesMade')
-                              | Changes made to your account
-                          .form-check
-                            input#newProducts.form-check-input(type='checkbox' checked='')
-                            label.form-check-label(for='newProducts')
-                              | Information on new products and services
-                          .form-check
-                            input#proOffers.form-check-input(type='checkbox')
-                            label.form-check-label(for='proOffers')
-                              | Marketing and promo offers
-                          .form-check
-                            input#securityNotify.form-check-input(type='checkbox' checked='' disabled='')
-                            label.form-check-label(for='securityNotify')
-                              | Security alerts
-                      .text-center
-                        button.btn.btn-dark(type='submit')
-                          | Save Changes
-                    // End settings Form
-                  #profile-change-password.tab-pane.fade.pt-3
-                    // Change Password Form
-                    form
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='currentPassword') Current Password
-                        .col-md-8.col-lg-9
-                          input#currentPassword.form-control(name='password' type='password')
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='newPassword') New Password
-                        .col-md-8.col-lg-9
-                          input#newPassword.form-control(name='newpassword' type='password')
-                      .row.mb-3
-                        label.col-md-4.col-lg-3.col-form-label(for='renewPassword')
-                          | Re-enter New
-                          | Password
-                        .col-md-8.col-lg-9
-                          input#renewPassword.form-control(name='renewpassword' type='password')
-                      .text-center
-                        button.btn.btn-dark(type='submit')
-                          | Change Password
-                    // End Change Password Form
-                // End Bordered Tabs
-              .modal-footer.fresher
-                //
-                  <button
-                  type="button"
-                  class="btn btn-dark"
-                  data-bs-dismiss="modal"
-                  >
-                  Close
-                  </button>
-                  <button type="button" class="btn btn-dark">Save changes</button>
-      // End #Main
-// End of Profile Modal
-// Notifications Modal
-#largeModalAccts.modal.fade(tabindex='-1')
-  .modal-dialog.modal-lg
-    .modal-content
-      .modal-header.fresher
-        h5.modal-title Notifications
-        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-      .modal-body
-        .card.mb-0
-          .card-body.body-carder
-            div
-              .card
+                              .col-md-6
+                                .form-floating.mb-3
+                                  select#floatingSelect.form-select(required onblur='supplyCateg()' name='supplycategory' aria-label='Supplier Category')
+                                    option(selected='' disabled='') Select Category
+                                    option(value='Individual') Individual Farmer
+                                    option(value='Enterprise') Enterprise
+                                    option(value='KGL_Farm') KGL Farm
+                                  label(for='floatingSelect') Supplier Category
+                              .col-md-6
+                                .form-floating
+                                  input#floatingZip.form-control(required onblur='inventSuppNam()' name='suppliername' type='text' placeholder='Name of Supplier')
+                                  label.form-label(for='floatingZip') Name of Supplier
+                              .text-center
+                                button.btn.btn-dark(type='submit' name='submitbutton' href=('/manager/add'))
+                                  | Submit
+                                button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
+                                  | Reset
+                            // End floating Labels Form
+                #mediumModalEdit.modal.fade(tabindex='-1')
+                  .modal-dialog.modal-md
+                    .modal-content
+                      .modal-header.fresher
+                        h5.modal-title Edit Inventory Item
+                        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                      .modal-body(style='background-color:rgba(43, 45, 79, 0.531);')
+                        .card
+                          .card-body
+                            h5.card-title Item Details
+                            // Floating Labels Form
+                            form.row.g-3(name='editInventory' method='post' action='/manager/edit')
+                              .col-md-6
+                                .form-floating
+                                  input#itemname.form-control(required onblur='inventName()' name='itemname' type='text' value=itemname)
+                                  label.form-label(for='itemname') Item Name
+                              .col-md-6
+                                .form-floating
+                                  input#floatingEmail.form-control(required onblur='inventType()' name='itemtype' type='text' value=itemtype)
+                                  label.form-label(for='floatingEmail') Item Type
+                              .col-md-6
+                                .form-floating
+                                  input#floatingPassword.form-control(required onblur='inventPurch()' name='purchaseprice' type='text' value=purchaseprice)
+                                  label.form-label(for='floatingPassword') Purchase Price
+                              .col-md-6
+                                .form-floating
+                                  input#floatingCity.form-control(required onblur='inventSell()' name='sellingprice' type='text' value=sellingprice)
+                                  label.form-label(for='floatingCity') Selling Price
+                              .col-md-6
+                                .form-floating
+                                  input#floatingCity.form-control(required onblur='inventLeadTime()' name='leadtime' type='text' value=leadtime)
+                                  label(for='floatingCity') Lead Time
+                              .col-md-6
+                                .form-floating
+                                  input#floatingCity.form-control(required onblur='inventCycleTime()' name='cycletime' type='text' value=cycletime)
+                                  label(for='floatingCity') Cycle Time
+                              .col-md-6
+                                .form-floating.mb-3
+                                  select#floatingSelect.form-select(required onblur='supplyCateg()' name='supplycategory' value=supplycategory aria-label='Supplier Category')
+                                    option(selected='' disabled='') Supplier Category
+                                    option(value='Individual') Individual Farmer
+                                    option(value='Enterprise') Enterprise
+                                    option(value='KGL_Farm') KGL Farm
+                                  label(for='floatingSelect') Supplier Category
+                              .col-md-6
+                                .form-floating
+                                  input#floatingZip.form-control(required onblur='inventSuppNam()' name='suppliername' value=suppliername type='text')
+                                  label.form-label(for='floatingZip') Supplier Name
+                              .text-center
+                                button.btn.btn-dark(type='submit' name='submitbutton' onsubmit='')
+                                  | Edit
+                                button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
+                                  | Reset
+                            // End floating Labels Form
+                      
+        #bordered-profile.tab-pane.fade(role='tabpanel' aria-labelledby='profile-tab')
+          .container
+            .row
+              .card.mb-1(style='background-color:antiquewhite; border: 1px solid rgba(70, 71, 95, 0.803);')
                 .card-body.pb-0
-                  ul.notifications(style='list-style-type:none;')
-                    li.dropdown-header.pb-0
-                      h5.card-title.pb-0.mb-0
-                        | You have 2 new notifications
-                        // <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2 mb-1 mt-1" style="color:white;">View all</span></a>
-                    li
-                      hr.dropdown-divider.mt-0
-                    br
-                    li.notification-item
-                      i.bi.bi-info-circle.text-primary
-                      div
-                        h5.mb-0 Out of Stock - Soy Beans (crushed)
-                        ul(style='list-style-type: none;')
-                          li  Review Product Details.
-                          li
-                            button.btn.btn-success.p-1.ms-1.pt-0.pb-0 Purchase Now
-                            button.btn.btn-danger.p-1.ms-1.pt-0.pb-0 Schedule Purchase
-                        p 30 min. ago
-                    li
-                      hr.dropdown-divider
-                    br
-                    li.notification-item
-                      i.bi.bi-info-circle.text-primary
-                      div
-                        h5.mb-0 Out of Stock - Maize Cobs
-                        ul(style='list-style-type: none;')
-                          li  Review Product Details.
-                          li
-                            button.btn.btn-success.p-1.ms-1.pt-0.pb-0 Purchase Now
-                            button.btn.btn-danger.p-1.ms-1.pt-0.pb-0 Schedule Purchase
-                        p 1 hr. ago
-                    li
-                      hr.dropdown-divider
-                    br
-                    li.dropdown-footer
-                      a(href='#') Show all notifications
-      .modal-footer.pt-0.fresher(style='height:50px;')
-        .d-flex.justify-content-end
-          ul(style='list-style-type:none;')
-            li
-              button.btn.btn-dark.listbtn(type='button' data-bs-dismiss='modal') Dismiss
-// End of Notifications Modal
+                  h5.card-title.pb-0 Stock
+                  // Table with stripped rows
+                  table.table.table-striped.datatable
+                    thead
+                      tr
+                        th(scope='col') #
+                        th(scope='col') Name of Produce
+                        th(scope='col') SKU No.
+                        th(scope='col') Quantity (Kgs)
+                        th(scope='col') Supplier(s)
+                        th(scope='col') Avg Lead Time
+                        th(scope='col') Avg Cycle Time
+                    tbody
+                      tr
+                        th(scope='row') 1
+                        td Maize
+                        td 005
+                        td 280
+                        td James Kyeba
+                        td 2 days
+                        td 2 weeks/100 kgs
+                      tr
+                        th(scope='row') 2
+                        td Cow peas
+                        td 007
+                        td 35
+                        td Kenny Rogers
+                        td 2 days
+                        td 10 days/100 kgs
+                      tr
+                        th(scope='row') 3
+                        td Soy Beans
+                        td 001
+                        td 450
+                        td Peter Kirya, Sean Ssozi
+                        td 3 days
+                        td 2 weeks/150 kgs
+                      tr
+                        th(scope='row') 4
+                        td Ground Nuts
+                        td 006
+                        td 340
+                        td Vanessa Nalubega
+                        td 2 days
+                        td 5 days/200 kgs
+                      tr
+                        th(scope='row') 5
+                        td Beans
+                        td 002
+                        td 470
+                        td Sean Ssozi
+                        td 1 day
+                        td 5 days/300 kgs
+                  // End Table with stripped rows
+      // End Bordered Tabs
+  // Profile Modal
+  #largeModalprofile.modal.fade(tabindex='-1')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header.fresher
+          h5.modal-title User Profile
+          button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+        .modal-body
+          // #main
+          main#main.main
+            .pagetitle.profiletitle
+              h1 Profile
+              nav
+                ol.breadcrumb.profileCrumb
+                  li.breadcrumb-item Home
+                  li.breadcrumb-item Users
+                  li.breadcrumb-item.active Profile
+            // End Page Title
+        section.section.profile
+          .row
+            .col-lg-4
+              .card
+                .card-body.profile-card.pt-4.d-flex.flex-column.align-items-center
+                  img.rounded-circle(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' alt='Profile')
+                  h2 Dominic Mugisa
+                  h3 Manager
+                  //
+                    <div class="social-links mt-2">
+                    <a href="#" class="twitter"
+                    ><i class="bi bi-twitter"></i
+                    ></a>
+                    <a href="#" class="facebook"
+                    ><i class="bi bi-facebook"></i
+                    ></a>
+                    <a href="#" class="instagram"
+                    ><i class="bi bi-instagram"></i
+                    ></a>
+                    <a href="#" class="linkedin"
+                    ><i class="bi bi-linkedin"></i
+                    ></a>
+                    </div>
+            .col-lg-8
+              .card
+                .card-body.pt-3
+                  // Bordered Tabs
+                  ul.nav.nav-tabs.nav-tabs-bordered
+                    li.nav-item
+                      button.nav-link.active(data-bs-toggle='tab' data-bs-target='#profile-overview')
+                        | Overview
+                    li.nav-item
+                      button.nav-link(data-bs-toggle='tab' data-bs-target='#profile-edit')
+                        | Edit Profile
+                    li.nav-item
+                      button.nav-link(data-bs-toggle='tab' data-bs-target='#profile-settings')
+                        | Settings
+                    li.nav-item
+                      button.nav-link(data-bs-toggle='tab' data-bs-target='#profile-change-password')
+                        | Change Password
+                  .tab-content.pt-2
+                    #profile-overview.tab-pane.fade.show.active.profile-overview
+                      h5.card-title About
+                      p.small.fst-italic
+                        | Lorem ipsum dolor sit amet, consectetur adipiscing
+                        | elit. Vestibulum hendrerit, ante a sagittis
+                        | posuere, elit nibh convallis nunc, quis faucibus
+                        | sem diam id leo. Vivamus id arcu pellentesque,
+                        | blandit tortor sagittis, facilisis libero. Aenean
+                        | mattis tellus a dui consectetur, et viverra turpis
+                        | aliquam.
+                      h5.card-title Profile Details
+                      .row
+                        .col-lg-3.col-md-4.label
+                          | Full Name
+                        .col-lg-9.col-md-8
+                          | Dominic Mugisa
+                      .row
+                        .col-lg-3.col-md-4.label Company
+                        .col-lg-9.col-md-8
+                          | Karibu Groceries Limited.
+                      .row
+                        .col-lg-3.col-md-4.label Job
+                        .col-lg-9.col-md-8 Manager - Maganjo
+                      .row
+                        .col-lg-3.col-md-4.label Country
+                        .col-lg-9.col-md-8 UGANDA
+                      .row
+                        .col-lg-3.col-md-4.label Address
+                        .col-lg-9.col-md-8
+                          | Kawaga Close, off Kalungi Road, Muyenga,
+                          | Kampala, Uganda.
+                      .row
+                        .col-lg-3.col-md-4.label Phone
+                        .col-lg-9.col-md-8
+                          | +256 759 912 204
+                      .row
+                        .col-lg-3.col-md-4.label Email
+                        .col-lg-9.col-md-8
+                          | d.mugisa@student.ciu.ac.ug
+                    #profile-edit.tab-pane.fade.profile-edit.pt-3
+                      // Profile Edit Form
+                      form(name='editprofile')
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='profileImage') Profile Image
+                          .col-md-8.col-lg-9
+                            img(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' alt='Profile')
+                            .pt-2
+                              a.btn.btn-dark.btn-sm(href='#' title='Upload new profile image')
+                                i.bi.bi-upload
+                              a.btn.btn-danger.btn-sm(href='#' title='Remove my profile image')
+                                i.bi.bi-trash
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='fullName') Full Name
+                          .col-md-8.col-lg-9
+                            input#fullName.form-control(name='fullname' required onblur='profileName()' type='text' placeholder='Full Name' value='')
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='about') About
+                          .col-md-8.col-lg-9
+                            textarea#about.form-control(name='about' required onblur='profileAbout()' style='height: 100px')
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='company') Company
+                          .col-md-8.col-lg-9
+                            input#company.form-control(name='company' required onblur='profileCompany()' type='text' placeholder='Karibu Groceries Limited.' value='')
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='Job') Job
+                          .col-md-8.col-lg-9
+                            input#Job.form-control(name='job' required onblur='profileRole()' type='text' placeholder='Manager' value='')
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='Country') Country
+                          .col-md-8.col-lg-9
+                            input#Country.form-control(name='country' required onblur='profileCountry()' type='text' placeholder='UGANDA' value='')
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='Address') Address
+                          .col-md-8.col-lg-9
+                            input#Address.form-control(name='address' required onblur='profileAddress()' type='text' placeholder='Kawaga Close, off Kalungi Road, Muyenga, Kampala, Uganda.' value='')
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='Phone') Phone
+                          .col-md-8.col-lg-9
+                            input#Phone.form-control(name='phone' required onblur='profilePhone()' type='text' placeholder='--- --- --- ---' value='')
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='Email') Email
+                          .col-md-8.col-lg-9
+                            input#Email.form-control(name='email' required onblur='profileEmail()' type='email' placeholder='email@example.ac.ug' value='')
+                        .text-center
+                          button.btn.btn-dark(type='submit')
+                            | Save Changes
+                      // End Profile Edit Form
+                    #profile-settings.tab-pane.fade.pt-3
+                      // Settings Form
+                      form
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='fullName') Email Notifications
+                          .col-md-8.col-lg-9
+                            .form-check
+                              input#changesMade.form-check-input(type='checkbox' checked='')
+                              label.form-check-label(for='changesMade')
+                                | Changes made to your account
+                            .form-check
+                              input#newProducts.form-check-input(type='checkbox' checked='')
+                              label.form-check-label(for='newProducts')
+                                | Information on new products and services
+                            .form-check
+                              input#proOffers.form-check-input(type='checkbox')
+                              label.form-check-label(for='proOffers')
+                                | Marketing and promo offers
+                            .form-check
+                              input#securityNotify.form-check-input(type='checkbox' checked='' disabled='')
+                              label.form-check-label(for='securityNotify')
+                                | Security alerts
+                        .text-center
+                          button.btn.btn-dark(type='submit')
+                            | Save Changes
+                      // End settings Form
+                    #profile-change-password.tab-pane.fade.pt-3
+                      // Change Password Form
+                      form
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='currentPassword') Current Password
+                          .col-md-8.col-lg-9
+                            input#currentPassword.form-control(name='password' type='password')
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='newPassword') New Password
+                          .col-md-8.col-lg-9
+                            input#newPassword.form-control(name='newpassword' type='password')
+                        .row.mb-3
+                          label.col-md-4.col-lg-3.col-form-label(for='renewPassword')
+                            | Re-enter New
+                            | Password
+                          .col-md-8.col-lg-9
+                            input#renewPassword.form-control(name='renewpassword' type='password')
+                        .text-center
+                          button.btn.btn-dark(type='submit')
+                            | Change Password
+                      // End Change Password Form
+                  // End Bordered Tabs
+                .modal-footer.fresher
+                  //
+                    <button
+                    type="button"
+                    class="btn btn-dark"
+                    data-bs-dismiss="modal"
+                    >
+                    Close
+                    </button>
+                    <button type="button" class="btn btn-dark">Save changes</button>
+        // End #Main
+  // End of Profile Modal
+  // Notifications Modal
+  #largeModalAccts.modal.fade(tabindex='-1')
+    .modal-dialog.modal-lg
+      .modal-content
+        .modal-header.fresher
+          h5.modal-title Notifications
+          button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+        .modal-body
+          .card.mb-0
+            .card-body.body-carder
+              div
+                .card
+                  .card-body.pb-0
+                    ul.notifications(style='list-style-type:none;')
+                      li.dropdown-header.pb-0
+                        h5.card-title.pb-0.mb-0
+                          | You have 2 new notifications
+                          // <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2 mb-1 mt-1" style="color:white;">View all</span></a>
+                      li
+                        hr.dropdown-divider.mt-0
+                      br
+                      li.notification-item
+                        i.bi.bi-info-circle.text-primary
+                        div
+                          h5.mb-0 Out of Stock - Soy Beans (crushed)
+                          ul(style='list-style-type: none;')
+                            li  Review Product Details.
+                            li
+                              button.btn.btn-success.p-1.ms-1.pt-0.pb-0 Purchase Now
+                              button.btn.btn-danger.p-1.ms-1.pt-0.pb-0 Schedule Purchase
+                          p 30 min. ago
+                      li
+                        hr.dropdown-divider
+                      br
+                      li.notification-item
+                        i.bi.bi-info-circle.text-primary
+                        div
+                          h5.mb-0 Out of Stock - Maize Cobs
+                          ul(style='list-style-type: none;')
+                            li  Review Product Details.
+                            li
+                              button.btn.btn-success.p-1.ms-1.pt-0.pb-0 Purchase Now
+                              button.btn.btn-danger.p-1.ms-1.pt-0.pb-0 Schedule Purchase
+                          p 1 hr. ago
+                      li
+                        hr.dropdown-divider
+                      br
+                      li.dropdown-footer
+                        a(href='#') Show all notifications
+        .modal-footer.pt-0.fresher(style='height:50px;')
+          .d-flex.justify-content-end
+            ul(style='list-style-type:none;')
+              li
+                button.btn.btn-dark.listbtn(type='button' data-bs-dismiss='modal') Dismiss
+  // End of Notifications Modal
 footer#footer.footer(style='background-color:rgba(70, 71, 95, 0.803); height: 50px;')
   .copyright(style='text-align: center; color:black; font-size:medium;')
     p Copyright 2022 &copy; Dev&apos;d By Dom
-// Vendor JS Files
-script(src='/vendor/bootstrap/js/bootstrap.bundle.min.js')
-script(src='/vendor/simple-datatables/simple-datatables.js')
-// Template Main JS File
-script(src='/js/main.js')
-script(src='/js/index.js')
+  // Vendor JS Files
+  script(src='/vendor/bootstrap/js/bootstrap.bundle.min.js')
+  //- script(src='/vendor/simple-datatables/simple-datatables.js')
+  // Template Main JS File
+  script(src='/js/main.js')
+  script(src='/js/index.js')
