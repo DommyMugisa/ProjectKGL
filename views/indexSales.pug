@@ -89,61 +89,25 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                 table.table.table-striped.datatable.table-reponsive
                   thead
                     tr
-                      th(scope='col') #
                       th(scope='col') Name of Produce
                       th(scope='col') Type of Produce
                       th(scope='col') Purchase Price (Ugx/Kg)
                       th(scope='col') Selling Price (Ugx/Kg)
                       th(scope='col') Supplier Category
                   tbody
-                    tr
-                      th(scope='row') 1
-                      td Beans
-                      td Pods
-                      td 4,000
-                      td 5,000
-                      td Individual Farmer
-                    tr
-                      th(scope='row') 2
-                      td Maize
-                      td Cobs
-                      td 3,500
-                      td 4,500
-                      td Enterprise
-                    tr
-                      th(scope='row') 3
-                      td Cow Peas
-                      td Pods
-                      td 4,500
-                      td 6,000
-                      td KGL Farm: Matugga
-                    tr
-                      th(scope='row') 4
-                      td G.Nuts
-                      td Nuts
-                      td 3,400
-                      td 7,000
-                      td KGL Farm: Maganjo
-                    tr
-                      th(scope='row') 5
-                      td Soy Beans
-                      td Seeds
-                      td 4,700
-                      td 8,000
-                      td Individual Farmer
-                // End Table with stripped rows
+                    if inventories.length
+                      each inventory in inventories
+                        tr
+                          td #{inventory.itemname}
+                          td #{inventory.itemtype}
+                          td #{inventory.purchaseprice}
+                          td #{inventory.sellingprice}
+                          td #{inventory.supplycategory}
+                  // End Table with stripped rows
           .row.justify-content-end
             // the button below should lead to a model to create a new inventory item, w/c item should become retrievable by the data-table.
             .col-sm-2
-              //
-                <button
-                class="btn btn-dark"
-                type="button"
-                data-bs-toggle="modal"
-                data-bs-target="#mediumModal"
-                >
-                Add To Inventory
-                </button>
+
               #mediumModal.modal.fade(tabindex='-1')
                 .modal-dialog.modal-md
                   .modal-content
@@ -197,7 +161,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                               .col-md-12
                                 .form-floating
                                   input#floatingCity.form-control(required onblur='inventCycleTime()' name='cycletime' type='text' placeholder='Cycle Time')
-                                  label(for='floatingCity') Cycle Time
+                                  label(for='floatingCity') Cycle Time per Tonne
                                   //
                                     <div class="valid-feedback">Cycle Time is valid!</div>
                                     <div class="invalid-feedback">Cycle Time is not valid!</div>
@@ -255,7 +219,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                       th(scope='col') Quantity (Kgs)
                       th(scope='col') Supplier(s)
                       th(scope='col') Avg Lead Time
-                      th(scope='col') Avg Cycle Time
+                      th(scope='col') Avg Cycle Time per Tonne
                   tbody
                     tr
                       th(scope='row') 1
@@ -286,7 +250,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                       td Ground Nuts
                       td 006
                       td 340
-                      td Vanessa Nalubega
+                      td Nalubega Vanessa
                       td 2 days
                       td 5 days/200 kgs
                     tr

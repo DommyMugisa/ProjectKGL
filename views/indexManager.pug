@@ -110,7 +110,7 @@ body
                           td #{inventory.sellingprice}
                           td #{inventory.supplycategory}
                           td 
-                              a.btn.btn-success.btn-block(data-bs-toggle='modal' data-bs-target='#mediumModalEdit' href='/manager/edit/'+inventory._id) Edit
+                              a.btn.btn-success.btn-block(data-bs-toggle='modal' data-bs-target='#mediumModalEdit' href='/manager/edit/') Edit
                           td
                               form.delete(method="post" action='/manager/delete')
                                   input(type="hidden", placeholder="", name="id", value=inventory._id)
@@ -156,7 +156,7 @@ body
                               .col-md-6
                                 .form-floating
                                   input#floatingCity.form-control(required onblur='inventCycleTime()' name='cycletime' type='text' placeholder='Cycle Time')
-                                  label(for='floatingCity') Cycle Time
+                                  label(for='floatingCity') Cycle Time per Tonne
                               .col-md-6
                                 .form-floating.mb-3
                                   select#floatingSelect.form-select(required onblur='supplyCateg()' name='supplycategory' aria-label='Supplier Category')
@@ -170,7 +170,7 @@ body
                                   input#floatingZip.form-control(required onblur='inventSuppNam()' name='suppliername' type='text' placeholder='Name of Supplier')
                                   label.form-label(for='floatingZip') Name of Supplier
                               .text-center
-                                button.btn.btn-dark(type='submit' name='submitbutton' href=('/manager/add'))
+                                button.btn.btn-dark(type='submit' name='submitbutton' href=('/manager'))
                                   | Submit
                                 button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
                                   | Reset
@@ -210,10 +210,10 @@ body
                               .col-md-6
                                 .form-floating
                                   input#floatingCity.form-control(required onblur='inventCycleTime()' name='cycletime' type='text' value=cycletime)
-                                  label(for='floatingCity') Cycle Time
+                                  label(for='floatingCity') Cycle Time per Tonne
                               .col-md-6
                                 .form-floating.mb-3
-                                  select#floatingSelect.form-select(required onblur='supplyCateg()' name='supplycategory' value=supplycategory aria-label='Supplier Category')
+                                  select#floatingSelect.form-select(required onblur='supplyCateg()' name='supplycategory' aria-label='Supplier Category')
                                     option(selected='' disabled='') Supplier Category
                                     option(value='Individual') Individual Farmer
                                     option(value='Enterprise') Enterprise
@@ -224,7 +224,7 @@ body
                                   input#floatingZip.form-control(required onblur='inventSuppNam()' name='suppliername' value=suppliername type='text')
                                   label.form-label(for='floatingZip') Supplier Name
                               .text-center
-                                button.btn.btn-dark(type='submit' name='submitbutton' onsubmit='')
+                                button.btn.btn-dark(type='submit' name='submitbutton' href='/manager/edit')
                                   | Edit
                                 button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
                                   | Reset
@@ -246,7 +246,7 @@ body
                         th(scope='col') Quantity (Kgs)
                         th(scope='col') Supplier(s)
                         th(scope='col') Avg Lead Time
-                        th(scope='col') Avg Cycle Time
+                        th(scope='col') Avg Cycle Time per Tonne
                     tbody
                       tr
                         th(scope='row') 1
@@ -277,7 +277,7 @@ body
                         td Ground Nuts
                         td 006
                         td 340
-                        td Vanessa Nalubega
+                        td Nalubega Vanessa
                         td 2 days
                         td 5 days/200 kgs
                       tr

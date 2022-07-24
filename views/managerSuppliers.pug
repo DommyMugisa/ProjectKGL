@@ -94,7 +94,6 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                 table.table.table-striped.datatable.table-reponsive
                   thead
                     tr
-                      th(scope='col') #
                       th(scope='col') First Name
                       th(scope='col') Surname
                       th(scope='col') Supplier Category
@@ -103,51 +102,22 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                       th(scope='col') Email Address
                       th(scope='col') Physical Address
                   tbody
-                    tr
-                      th(scope='row') 1
-                      td James
-                      td Kyeba
-                      td Individual Farmer
-                      td Kyab &amp; Sons Ltd.
-                      td 0773947384
-                      td K&amp;SLtd@gmail.com
-                      td Plot 3, Kaggawa Close, Kampala.
-                    tr
-                      th(scope='row') 2
-                      td Kenny
-                      td Rogers
-                      td Enterprise
-                      td KJT Cereals Ltd.
-                      td 0783920384
-                      td KJTCrls@gmail.com
-                      td Plot 5, Industrial Area, Kampala.
-                    tr
-                      th(scope='row') 3
-                      td Peter
-                      td Kirya
-                      td KGL Farm
-                      td KGL - Matugga
-                      td 0756453672
-                      td KJLMt@yahoomail.com
-                      td Plot 9 Matugga East
-                    tr
-                      th(scope='row') 4
-                      td Vanessa
-                      td Nalubega
-                      td KGL Farm
-                      td KGL - Maganjo
-                      td 0709873945
-                      td KGLMg@yahoomail.com
-                      td Plot 5, Maganjo South
-                    tr
-                      th(scope='row') 5
-                      td Sean
-                      td Ssozi
-                      td Individual Farmer
-                      td UgaCereals Ltd.
-                      td 0777768439
-                      td UgaCereals@gmail.com
-                      td Plot 1 Kira Rd, Kampala.
+                    if suppliers.length
+                      each supplier in suppliers
+                        tr
+                          td #{supplier.firstname}
+                          td #{supplier.surname}
+                          td #{supplier.category}
+                          td #{supplier.business}
+                          td #{supplier.telephone}
+                          td #{supplier.email}
+                          td #{supplier.physicaladdress}
+                          td 
+                              a.btn.btn-success.btn-block(data-bs-toggle='modal' data-bs-target='#modalDialogScrollableSupplierEdit' href='/manager/suppliers/edit') Edit
+                          td
+                              form.delete(method="post" action='/manager/suppliers/delete')
+                                  input(type="hidden", placeholder="", name="id", value=supplier._id)
+                                  button.btn.btn-danger(type="submit") Delete
                 // End Table with stripped rows
       // Modal Dialog Scrollable
       //
@@ -167,7 +137,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
               button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
             .modal-body(style='background-color:rgba(43, 45, 79, 0.531);')
               .container-fluid.d-flex.justify-content-center
-                form.row.g-3.mb-3(name='addsupplier')
+                form.row.g-3.mb-3(name='addsupplier' method='post' action='/manager/suppliers')
                   .col-sm-7
                     .row.gy-3
                       .col-sm-12
@@ -176,9 +146,9 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                         input#inputName5.form-control(type='text' required onblur='supplierSur()' name='surname' placeholder='Surname')
                       .col-sm-12.form-floating
                         select#inputName5.form-control(type='text' required onblur='supplierCateg()' name='category')
-                          option(selected='' disabled='') Select Category:
-                          option(value='1') Individual Farmer
-                          option(value='2') Enterprise
+                          option(selected disabled) Select Category:
+                          option(value='Individual') Individual Farmer
+                          option(value='Enterprise') Enterprise
                         label(for='inputName5') Supplier Category
                   .col-sm-5.mt-3
                     img#profile(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' style='border-radius:5px;' alt='')
@@ -200,8 +170,56 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                     input#inputAddress2.form-control(type='text' name='nin' required onblur='supplierNIN()' placeholder='National ID Number')
                   .col-sm-6
                     input#inputAddress2.form-control(type='text' required onblur='supplierTIN()' name='tin' placeholder='TIN Number')
+                  .col-sm-6
+                    button.btn.btn-dark(type='submit' data-bs-dismiss='modal' href=('/manager/suppliers') ) Add Supplier 
             .modal-footer.fresher.pt-0.pb-0
-              button.btn.btn-dark(type='submit' data-bs-dismiss='modal') Add Supplier
+              
+      // End Modal Dialog Scrollable
+      #modalDialogScrollableSupplierEdit.modal.fade(tabindex='-1')
+        .modal-dialog.modal-dialog-scrollableSupplier
+          .modal-content
+            .modal-header.fresher(style='height:50px;')
+              h5.modal-title Edit Supplier Entry
+              button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+            .modal-body(style='background-color:rgba(43, 45, 79, 0.531);')
+              .container-fluid.d-flex.justify-content-center
+                form.row.g-3.mb-3(name='addsupplier' method='post' action='/manager/suppliers/edit')
+                  .col-sm-7
+                    .row.gy-3
+                      .col-sm-12
+                        input#inputName5.form-control(type='text' required onblur='supplierFirstName()' name='firstname' placeholder='First Name')
+                      .col-sm-12
+                        input#inputName5.form-control(type='text' required onblur='supplierSur()' name='surname' placeholder='Surname')
+                      .col-sm-12.form-floating
+                        select#inputName5.form-control(type='text' required onblur='supplierCateg()' name='category')
+                          option(selected disabled) Select Category:
+                          option(value='Individual') Individual Farmer
+                          option(value='Enterprise') Enterprise
+                        label(for='inputName5') Supplier Category
+                  .col-sm-5.mt-3
+                    img#profile(src='/img/profile-placeholder-image-gray-silhouette-vector-21542863.jpg' style='border-radius:5px;' alt='')
+                  .col-sm-12
+                    input#inputAddres5s.form-control(type='text' required onblur='supplierBizName()' name='business' placeholder='Business Name')
+                  .col-sm-6
+                    input#inputAddres5s.form-control(type='text' name='telephone' required onblur='supplierTelephone()' placeholder='Telephone')
+                  .col-sm-6
+                    input#inputAddres5s.form-control(type='text' name='businesstelephone' required onblur='supplierBizTel()' placeholder='Business Telephone')
+                  .col-sm-6
+                    input#inputAddres5s.form-control(type='text' name='email' required onblur='supplierEmail()' placeholder='E-mail')
+                  .col-sm-6
+                    input#inputAddres5s.form-control(type='text' name='businessemail' required onblur='supplierBizEmail()' placeholder='Business E-mail')
+                  .col-sm-6
+                    input#inputAddres5s.form-control(type='text' name='physicaladdress' required onblur='supplierAddress()' placeholder='Physical Address')
+                  .col-sm-6
+                    input#inputAddres5s.form-control(type='text' name='physicaladdress2' required onblur='supplierBizAddr()' placeholder='Physical Address 2')
+                  .col-sm-6
+                    input#inputAddress2.form-control(type='text' name='nin' required onblur='supplierNIN()' placeholder='National ID Number')
+                  .col-sm-6
+                    input#inputAddress2.form-control(type='text' required onblur='supplierTIN()' name='tin' placeholder='TIN Number')
+                  .col-sm-6 
+                    button.btn.btn-dark(type='submit' data-bs-dismiss='modal' href=('/manager/suppliers/edit') ) Edit Supplier
+            .modal-footer.fresher.pt-0.pb-0
+              
       // End Modal Dialog Scrollable
     // End Bordered Tabs
 // Profile Modal
@@ -473,4 +491,4 @@ script(src='/vendor/bootstrap/js/bootstrap.bundle.min.js')
 //- script(src='/vendor/simple-datatables/simple-datatables.js')
 // Template Main JS File
 script(src='/js/main.js')
-script(src='/js/index.js')
+//- script(src='/js/index.js')

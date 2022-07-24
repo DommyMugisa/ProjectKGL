@@ -85,7 +85,6 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                 table.table.table-striped.datatable.table-reponsive
                   thead
                     tr
-                      th(scope='col') #
                       th(scope='col') Name of Produce
                       th(scope='col') Type of Produce
                       th(scope='col') Tonnage (Kgs)
@@ -94,52 +93,23 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                       th(scope='col') Name of Buyer
                       th(scope='col') Sales Agent
                   tbody
-                    tr
-                      th(scope='row') 1
-                      td Beans
-                      td Pods
-                      td 400
-                      td 5,000
-                      td 04/05/22
-                      td TMT SuperMarket
-                      td Charles Odea
-                    tr
-                      th(scope='row') 2
-                      td Maize
-                      td Cobs
-                      td 300
-                      td 4,500
-                      td 10/05/22
-                      td Capital Shoppers
-                      td Jimmy.M
-                    tr
-                      th(scope='row') 3
-                      td Cow Peas
-                      td Pods
-                      td 500
-                      td 6,000
-                      td 23/05/22
-                      td Ian Asigara
-                      td Charles Odea
-                    tr
-                      th(scope='row') 4
-                      td G.Nuts
-                      td Nuts
-                      td 300
-                      td 7,000
-                      td 31/05/22
-                      td Mary Anne
-                      td Jimmy.M
-                    tr
-                      th(scope='row') 5
-                      td Soy Beans
-                      td Seeds
-                      td 700
-                      td 8,000
-                      td 06/06/22
-                      td Quality Supermarket
-                      td Charles Odea
-                // End Table with stripped rows
+                    if cashsales.length
+                      each cashsale in cashsales
+                        tr
+                          td #{cashsale.producename}
+                          td #{cashsale.producetype}
+                          td #{cashsale.salequantity}
+                          td #{cashsale.sellingprice}
+                          td #{cashsale.dateofsale}
+                          td #{cashsale.buyername}
+                          td #{cashsale.saleagent}
+                          td 
+                              a.btn.btn-success.btn-block(data-bs-toggle='modal' data-bs-target='#mediumModalEditCash' href='/director/sales/edit/') Edit
+                          td
+                              form.delete(method="post" action='/director/sales/delete')
+                                  input(type="hidden", placeholder="", name="id", value=cashsale._id)
+                                  button.btn.btn-danger(type="submit") Delete
+                  // End Table with stripped rows
           .row.justify-content-end
             // the button below should lead to a model to create a new inventory item, w/c item should become retrievable by the data-table.
             .col-sm-2
@@ -157,7 +127,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                           // Floating Labels Form
                           .container-fluid
                             h5.card-title.pb-0 Sale Details
-                            form.row.g-2.needs-validation(name='cashsales' onsubmit='')
+                            form.row.g-2.needs-validation(name='cashsales' method='post' action='/director/sales')
                               .col-md-6
                                 .form-floating
                                   input#itemname.form-control(required onblur='saleName()' name='producename' style='border:1px solid black;' type='text' placeholder='Item Name')
@@ -230,7 +200,111 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                                     <div class="valid-feedback">Supplier Name is valid!</div>
                                     <div class="invalid-feedback">Supplier Name is not valid!</div>
                               .text-center.d-flex.justify-content-end
-                                button.btn.btn-dark(type='submit' name='submitbutton' onsubmit='' style='margin-right: 2px;')
+                                button.btn.btn-dark(type='submit' name='submitbutton' href='/director/sales' style='margin-right: 2px;')
+                                  | Submit
+                                button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
+                                  | Reset
+                          // End floating Labels Form
+                    //
+                      <div class="modal-footer">
+                      <button
+                      type="button"
+                      class="btn btn-dark"
+                      data-bs-dismiss="modal"
+                      >
+                      Close
+                      </button>
+                      <button type="button" class="btn btn-dark">
+                      Save changes
+                      </button>
+                      </div>
+              // End Large Modal
+              #mediumModalEditCash.modal.fade(tabindex='-1')
+                .modal-dialog.modal-md
+                  .modal-content
+                    .modal-header.fresher
+                      h5.modal-title Edit Cash Sale
+                      button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                    .modal-body(style='background-color:rgba(43, 45, 79, 0.531);')
+                      .card
+                        .card-body.pb-2
+                          // Floating Labels Form
+                          .container-fluid
+                            h5.card-title.pb-0 Sale Details
+                            form.row.g-2.needs-validation(name='cashsales' method='post' action='/director/sales/edit' )
+                              .col-md-6
+                                .form-floating
+                                  input#itemname.form-control(required onblur='saleName()' name='producename' style='border:1px solid black;' type='text' placeholder='Item Name')
+                                  label.form-label(for='itemname') Item Name:
+                                  //
+                                    <div class="valid-feedback">Item name is valid!</div>
+                                    <div class="invalid-feedback">Item name is not valid!</div>
+                              .col-md-6
+                                .form-floating
+                                  input#floatingEmail.form-control(required onblur='saleType()' name='producetype' style='border:1px solid black;' type='text' placeholder='Item Type')
+                                  label.form-label(for='floatingEmail') Item Type:
+                                  //
+                                    <div class="valid-feedback">Item Type is valid!</div>
+                                    <div class="invalid-feedback">Item Type is not valid!</div>
+                              .col-md-6
+                                .form-floating
+                                  input#floatingPassword.form-control(required onblur='saleQty()' name='salequantity' type='text' style='border:1px solid black;' placeholder='Purchase Price')
+                                  label.form-label(for='floatingPassword') Tonnage in Kgs:
+                                  //
+                                    <div class="valid-feedback">Purchase Price is valid!</div>
+                                    <div class="invalid-feedback">Purchase Price is not valid!</div>
+                              .col-md-6
+                                .form-floating
+                                  input#floatingCity.form-control(required onblur='salePrice()' name='sellingprice' style='border:1px solid black;' type='text' placeholder='Selling Price')
+                                  label.form-label(for='floatingCity') Selling Price:
+                                  //
+                                    <div class="valid-feedback">Selling Price is valid!</div>
+                                    <div class="invalid-feedback">Selling Price is not valid!</div>
+                              .col-md-6
+                                .form-floating.mb-2
+                                  input#floatingCity.form-control(required onblur='dateOfSale()' name='dateofsale' type='text' style='border:1px solid black;' placeholder='Lead Time')
+                                  label(for='floatingCity') Date of Dispatch:
+                                  //
+                                    <div class="valid-feedback">Lead Time is valid!</div>
+                                    <div class="invalid-feedback">Lead Time is not valid!</div>
+                              .col-md-6
+                                .form-floating.mb-2
+                                  select#floatingSelect.form-select(required onblur='saleStat()' name='salecategory' style='border:1px solid black;' aria-label='Supplier Category')
+                                    option(selected='' value='1') Cash Sale
+                                    option(disabled='' value='2') Credit Sale
+                                  label(for='floatingSelect') Sale Status:
+                                  //
+                                    <div class="valid-feedback">Supplier Category is valid!</div>
+                                    <div class="invalid-feedback">Supplier Category is not valid!</div>
+                              ul.mb-0.mt-0(style='list-style-type:none;')
+                                li
+                                  hr.dropdown-divider(style='color: black;')
+                              .col-md-6
+                                .form-floating.mb-2
+                                  input#floatingCity.form-control(required onblur='buyerName()' name='buyername' type='text' style='border:1px solid black;' placeholder='Cycle Time')
+                                  label(for='floatingCity') Name of Buyer:
+                                  //
+                                    <div class="valid-feedback">Cycle Time is valid!</div>
+                                    <div class="invalid-feedback">Cycle Time is not valid!</div>
+                              .col-md-6
+                                .form-floating.mb-2
+                                  input#floatingZip.form-control(required onblur='buyerContact()' name='buyercontact' style='border:1px solid black;' type='text' placeholder='Name of Supplier')
+                                  label.form-label(for='floatingZip') Buyer Contact:
+                                  //
+                                    <div class="valid-feedback">Supplier Name is valid!</div>
+                                    <div class="invalid-feedback">Supplier Name is not valid!</div>
+                              ul.mb-0.mt-0(style='list-style-type:none;')
+                                li
+                                  hr.dropdown-divider(style='color: black;')
+                              .col-md-6
+                                .form-floating
+                                  input#floatingZip.form-control(required onblur='salesAgent()' name='saleagent' type='text' style='border:1px solid black;' placeholder='Name of Supplier')
+                                  label.form-label(for='floatingZip') Name of Sales Agent:
+                                  //
+                                    <div class="valid-feedback">Supplier Name is valid!</div>
+                                    <div class="invalid-feedback">Supplier Name is not valid!</div>
+                              .text-center.d-flex.justify-content-end
+                                button.btn.btn-dark(type='submit' name='submitbutton' href='/director/sales/edit' data-bs-toggle='modal' data-bs-target='#mediumModalEditCash' style='margin-right: 2px;')
                                   | Submit
                                 button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
                                   | Reset
@@ -259,7 +333,6 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                 table.table.table-striped.datatable.table-reponsive
                   thead
                     tr
-                      th(scope='col') #
                       th(scope='col') Name of Produce
                       th(scope='col') Type of Produce
                       th(scope='col') Tonnage (Kgs)
@@ -270,62 +343,23 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                       th(scope='col') Sales Agent
                       th(scope='col') Payment Status
                   tbody
-                    tr
-                      th(scope='row') 1
-                      td Beans
-                      td Pods
-                      td 400
-                      td 5,000
-                      td 04/05/22
-                      td 04/06/22
-                      td TMT SuperMarket
-                      td Charles Odea
-                      td Pending
-                    tr
-                      th(scope='row') 2
-                      td Maize
-                      td Cobs
-                      td 300
-                      td 4,500
-                      td 10/05/22
-                      td 04/06/22
-                      td Capital Shoppers
-                      td Jimmy.M
-                      td Cleared
-                    tr
-                      th(scope='row') 3
-                      td Cow Peas
-                      td Pods
-                      td 500
-                      td 6,000
-                      td 23/05/22
-                      td 04/06/22
-                      td Ian Asigara
-                      td Charles Odea
-                      td Cleared
-                    tr
-                      th(scope='row') 4
-                      td G.Nuts
-                      td Nuts
-                      td 300
-                      td 7,000
-                      td 31/05/22
-                      td 04/06/22
-                      td Mary Anne
-                      td Jimmy.M
-                      td Pending
-                    tr
-                      th(scope='row') 5
-                      td Soy Beans
-                      td Seeds
-                      td 700
-                      td 8,000
-                      td 06/06/22
-                      td 04/07/22
-                      td Quality Supermarket
-                      td Charles Odea
-                      td Cleared
-                // End Table with stripped rows
+                    if creditsales.length
+                      each creditsale in creditsales
+                        tr
+                          td #{creditsale.producename}
+                          td #{creditsale.producetype}
+                          td #{creditsale.salequantity}
+                          td #{creditsale.sellingprice}
+                          td #{creditsale.dateofsale}
+                          td #{creditsale.buyername}
+                          td #{creditsale.saleagent}
+                          td 
+                              a.btn.btn-success.btn-block(data-bs-toggle='modal' data-bs-target='#mediumModalCredEdit' href='/director/sales/edit/') Edit
+                          td
+                              form.delete(method="post" action='/director/sales/delete')
+                                  input(type="hidden", placeholder="", name="id", value=creditsale._id)
+                                  button.btn.btn-danger(type="submit") Delete
+                  // End Table with stripped rows
           .row.justify-content-end
             // the button below should lead to a model to create a new inventory item, w/c item should become retrievable by the data-table.
             .col-sm-2
@@ -343,7 +377,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                           // Floating Labels Form
                           .container-fluid
                             h5.card-title.pb-0 Sale Details
-                            form.row.g-2.needs-validation(name='creditsales' onsubmit='')
+                            form.row.g-2.needs-validation(name='creditsales' method='post' action='/director/sales')
                               .col-md-6
                                 .form-floating
                                   input#itemname.form-control(required onblur='credSaleName()' name='producename' style='border:1px solid black;' type='text' placeholder='Item Name')
@@ -360,7 +394,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                                     <div class="invalid-feedback">Item Type is not valid!</div>
                               .col-md-6
                                 .form-floating
-                                  input#floatingPassword.form-control(required onblur='credSaleQty()' name='salequantity' type='text' style='border:1px solid black;' placeholder='Purchase Price')
+                                  input#floatingPassword.form-control(required onblur='credSaleQty()' name='salequantity' type='text' style='border:1px solid black;' placeholder='Tonnage in Kgs')
                                   label.form-label(for='floatingPassword') Tonnage in Kgs:
                                   //
                                     <div class="valid-feedback">Purchase Price is valid!</div>
@@ -374,14 +408,14 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                                     <div class="invalid-feedback">Selling Price is not valid!</div>
                               .col-md-6
                                 .form-floating.mb-2
-                                  input#floatingCity.form-control(required onblur='credDateOfSale()' name='dateofsale' type='text' style='border:1px solid black;' placeholder='Lead Time')
+                                  input#floatingCity.form-control(required onblur='credDateOfSale()' name='dateofsale' type='text' style='border:1px solid black;' placeholder='Date of Dispatch')
                                   label(for='floatingCity') Date of Dispatch:
                                   //
                                     <div class="valid-feedback">Lead Time is valid!</div>
                                     <div class="invalid-feedback">Lead Time is not valid!</div>
                               .col-md-6
                                 .form-floating.mb-2
-                                  input#floatingCity.form-control(required onblur='credDueDate()' name='duedate' type='text' style='border:1px solid black;' placeholder='Lead Time')
+                                  input#floatingCity.form-control(required onblur='credDueDate()' name='duedate' type='text' style='border:1px solid black;' placeholder='Due Date')
                                   label(for='floatingCity') Due Date:
                                   //
                                     <div class="valid-feedback">Lead Time is valid!</div>
@@ -400,28 +434,28 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                                   hr.dropdown-divider(style='color: black;')
                               .col-md-6
                                 .form-floating.mb-2
-                                  input#floatingCity.form-control(required onblur='credBuyerName()' name='buyername' type='text' style='border:1px solid black;' placeholder='Cycle Time')
+                                  input#floatingCity.form-control(required onblur='credBuyerName()' name='buyername' type='text' style='border:1px solid black;' placeholder='Name of Buyer')
                                   label(for='floatingCity') Name of Buyer:
                                   //
                                     <div class="valid-feedback">Cycle Time is valid!</div>
                                     <div class="invalid-feedback">Cycle Time is not valid!</div>
                               .col-md-6
                                 .form-floating.mb-2
-                                  input#floatingZip.form-control(required onblur='credBuyerContact()' name='buyercontact' style='border:1px solid black;' type='text' placeholder='Name of Supplier')
+                                  input#floatingZip.form-control(required onblur='credBuyerContact()' name='buyercontact' style='border:1px solid black;' type='text' placeholder='Buyer Contact')
                                   label.form-label(for='floatingZip') Buyer Contact:
                                   //
                                     <div class="valid-feedback">Supplier Name is valid!</div>
                                     <div class="invalid-feedback">Supplier Name is not valid!</div>
                               .col-md-6
                                 .form-floating.mb-2
-                                  input#floatingZip.form-control(required onblur='credBuyerLocate()' name='location' style='border:1px solid black;' type='text' placeholder='Name of Supplier')
+                                  input#floatingZip.form-control(required onblur='credBuyerLocate()' name='location' style='border:1px solid black;' type='text' placeholder='Buyer Location')
                                   label.form-label(for='floatingZip') Buyer Location:
                                   //
                                     <div class="valid-feedback">Supplier Name is valid!</div>
                                     <div class="invalid-feedback">Supplier Name is not valid!</div>
                               .col-md-6
                                 .form-floating.mb-2
-                                  input#floatingZip.form-control(required onblur='credBuyerNIN()' name='nin' style='border:1px solid black;' type='text' placeholder='Name of Supplier')
+                                  input#floatingZip.form-control(required onblur='credBuyerNIN()' name='nin' style='border:1px solid black;' type='text' placeholder='Buyer NIN')
                                   label.form-label(for='floatingZip') Buyer NIN:
                                   //
                                     <div class="valid-feedback">Supplier Name is valid!</div>
@@ -431,13 +465,138 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                                   hr.dropdown-divider(style='color: black;')
                               .col-md-6
                                 .form-floating
-                                  input#floatingZip.form-control(required onblur='credSalesAgent()' name='saleagent' type='text' style='border:1px solid black;' placeholder='Name of Supplier')
+                                  input#floatingZip.form-control(required onblur='credSalesAgent()' name='saleagent' type='text' style='border:1px solid black;' placeholder='Name of Sales Agent:')
                                   label.form-label(for='floatingZip') Name of Sales Agent:
                                   //
                                     <div class="valid-feedback">Supplier Name is valid!</div>
                                     <div class="invalid-feedback">Supplier Name is not valid!</div>
                               .text-center.d-flex.justify-content-end
-                                button.btn.btn-dark(type='submit' name='submitbutton' onsubmit='' style='margin-right: 2px;')
+                                button.btn.btn-dark(type='submit' name='submitbutton' href='/director/sales' style='margin-right: 2px;')
+                                  | Submit
+                                button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
+                                  | Reset
+                          // End floating Labels Form
+                    //
+                      <div class="modal-footer">
+                      <button
+                      type="button"
+                      class="btn btn-dark"
+                      data-bs-dismiss="modal"
+                      >
+                      Close
+                      </button>
+                      <button type="button" class="btn btn-dark">
+                      Save changes
+                      </button>
+                      </div>
+              // End Large Modal
+              #mediumModalCredEdit.modal.fade(tabindex='-1')
+                .modal-dialog.modal-md
+                  .modal-content
+                    .modal-header.fresher
+                      h5.modal-title Edit Credit Sale
+                      button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                    .modal-body(style='background-color:rgba(43, 45, 79, 0.531);')
+                      .card
+                        .card-body.pb-2
+                          // Floating Labels Form
+                          .container-fluid
+                            h5.card-title.pb-0 Sale Details
+                            form.row.g-2.needs-validation(name='creditsales' method='post' action='/director/sales/edit')
+                              .col-md-6
+                                .form-floating
+                                  input#itemname.form-control(required onblur='credSaleName()' name='producename' style='border:1px solid black;' type='text' placeholder='Item Name')
+                                  label.form-label(for='itemname') Item Name:
+                                  //
+                                    <div class="valid-feedback">Item name is valid!</div>
+                                    <div class="invalid-feedback">Item name is not valid!</div>
+                              .col-md-6
+                                .form-floating
+                                  input#floatingEmail.form-control(required onblur='credSaleType()' name='producetype' style='border:1px solid black;' type='text' placeholder='Item Type')
+                                  label.form-label(for='floatingEmail') Item Type:
+                                  //
+                                    <div class="valid-feedback">Item Type is valid!</div>
+                                    <div class="invalid-feedback">Item Type is not valid!</div>
+                              .col-md-6
+                                .form-floating
+                                  input#floatingPassword.form-control(required onblur='credSaleQty()' name='salequantity' type='text' style='border:1px solid black;' placeholder='Tonnage in Kgs')
+                                  label.form-label(for='floatingPassword') Tonnage in Kgs:
+                                  //
+                                    <div class="valid-feedback">Purchase Price is valid!</div>
+                                    <div class="invalid-feedback">Purchase Price is not valid!</div>
+                              .col-md-6
+                                .form-floating
+                                  input#floatingCity.form-control(required onblur='credSalePrice()' name='sellingprice' style='border:1px solid black;' type='text' placeholder='Amount Due')
+                                  label.form-label(for='floatingCity') Amount Due:
+                                  //
+                                    <div class="valid-feedback">Selling Price is valid!</div>
+                                    <div class="invalid-feedback">Selling Price is not valid!</div>
+                              .col-md-6
+                                .form-floating.mb-2
+                                  input#floatingCity.form-control(required onblur='credDateOfSale()' name='dateofsale' type='text' style='border:1px solid black;' placeholder='Date of Dispatch')
+                                  label(for='floatingCity') Date of Dispatch:
+                                  //
+                                    <div class="valid-feedback">Lead Time is valid!</div>
+                                    <div class="invalid-feedback">Lead Time is not valid!</div>
+                              .col-md-6
+                                .form-floating.mb-2
+                                  input#floatingCity.form-control(required onblur='credDueDate()' name='duedate' type='text' style='border:1px solid black;' placeholder='Due Date')
+                                  label(for='floatingCity') Due Date:
+                                  //
+                                    <div class="valid-feedback">Lead Time is valid!</div>
+                                    <div class="invalid-feedback">Lead Time is not valid!</div>
+                              .col-md-6
+                                .form-floating.mb-2
+                                  select#floatingSelect.form-select(required onblur='credSaleStat()' name='salecategory' style='border:1px solid black;' aria-label='Supplier Category')
+                                    option(selected='' value='1') Credit Sale
+                                    option(disabled='' value='2') Cash Sale
+                                  label(for='floatingSelect') Sale Status:
+                                  //
+                                    <div class="valid-feedback">Supplier Category is valid!</div>
+                                    <div class="invalid-feedback">Supplier Category is not valid!</div>
+                              ul.mb-0.mt-0(style='list-style-type:none;')
+                                li
+                                  hr.dropdown-divider(style='color: black;')
+                              .col-md-6
+                                .form-floating.mb-2
+                                  input#floatingCity.form-control(required onblur='credBuyerName()' name='buyername' type='text' style='border:1px solid black;' placeholder='Name of Buyer')
+                                  label(for='floatingCity') Name of Buyer:
+                                  //
+                                    <div class="valid-feedback">Cycle Time is valid!</div>
+                                    <div class="invalid-feedback">Cycle Time is not valid!</div>
+                              .col-md-6
+                                .form-floating.mb-2
+                                  input#floatingZip.form-control(required onblur='credBuyerContact()' name='buyercontact' style='border:1px solid black;' type='text' placeholder='Buyer Contact')
+                                  label.form-label(for='floatingZip') Buyer Contact:
+                                  //
+                                    <div class="valid-feedback">Supplier Name is valid!</div>
+                                    <div class="invalid-feedback">Supplier Name is not valid!</div>
+                              .col-md-6
+                                .form-floating.mb-2
+                                  input#floatingZip.form-control(required onblur='credBuyerLocate()' name='location' style='border:1px solid black;' type='text' placeholder='Buyer Location')
+                                  label.form-label(for='floatingZip') Buyer Location:
+                                  //
+                                    <div class="valid-feedback">Supplier Name is valid!</div>
+                                    <div class="invalid-feedback">Supplier Name is not valid!</div>
+                              .col-md-6
+                                .form-floating.mb-2
+                                  input#floatingZip.form-control(required onblur='credBuyerNIN()' name='nin' style='border:1px solid black;' type='text' placeholder='Buyer NIN')
+                                  label.form-label(for='floatingZip') Buyer NIN:
+                                  //
+                                    <div class="valid-feedback">Supplier Name is valid!</div>
+                                    <div class="invalid-feedback">Supplier Name is not valid!</div>
+                              ul.mb-0.mt-0(style='list-style-type:none;')
+                                li
+                                  hr.dropdown-divider(style='color: black;')
+                              .col-md-6
+                                .form-floating
+                                  input#floatingZip.form-control(required onblur='credSalesAgent()' name='saleagent' type='text' style='border:1px solid black;' placeholder='Name of Sales Agent:')
+                                  label.form-label(for='floatingZip') Name of Sales Agent:
+                                  //
+                                    <div class="valid-feedback">Supplier Name is valid!</div>
+                                    <div class="invalid-feedback">Supplier Name is not valid!</div>
+                              .text-center.d-flex.justify-content-end
+                                button.btn.btn-dark(type='submit' name='submitbutton' data-bs-toggle='modal' data-bs-target='#mediumModalCredEdit' href='/director/sales/edit' style='margin-right: 2px;')
                                   | Submit
                                 button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
                                   | Reset

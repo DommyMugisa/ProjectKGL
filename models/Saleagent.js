@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const passportLocalMongoose = require("passport-local-mongoose");
 
-const SalesAgSchema = new mongoose.Schema({
+const SaleagentSchema = new mongoose.Schema({
   name: {
     type: String,
   },
@@ -17,5 +17,5 @@ const SalesAgSchema = new mongoose.Schema({
 });
 
 // Export Model
-SalesAgSchema.plugin(passportLocalMongoose, { usernameField: "email" });
-module.exports = mongoose.model("SalesAg", SalesAgSchema);
+SaleagentSchema.plugin(passportLocalMongoose, { usernameField: "email" });
+module.exports = mongoose.model("Saleagent", SaleagentSchema);

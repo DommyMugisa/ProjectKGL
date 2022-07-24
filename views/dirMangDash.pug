@@ -85,49 +85,27 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                 table.table.table-striped.datatable.table-reponsive
                   thead
                     tr
-                      th(scope='col') #
                       th(scope='col') Name of Produce
                       th(scope='col') Type of Produce
                       th(scope='col') Purchase Price (Ugx/Kg)
                       th(scope='col') Selling Price (Ugx/Kg)
                       th(scope='col') Supplier Category
                   tbody
-                    tr
-                      th(scope='row') 1
-                      td Beans
-                      td Pods
-                      td 4,000
-                      td 5,000
-                      td Individual Farmer
-                    tr
-                      th(scope='row') 2
-                      td Maize
-                      td Cobs
-                      td 3,500
-                      td 4,500
-                      td Enterprise
-                    tr
-                      th(scope='row') 3
-                      td Cow Peas
-                      td Pods
-                      td 4,500
-                      td 6,000
-                      td KGL Farm: Matugga
-                    tr
-                      th(scope='row') 4
-                      td G.Nuts
-                      td Nuts
-                      td 3,400
-                      td 7,000
-                      td KGL Farm: Maganjo
-                    tr
-                      th(scope='row') 5
-                      td Soy Beans
-                      td Seeds
-                      td 4,700
-                      td 8,000
-                      td Individual Farmer
-                // End Table with stripped rows
+                    if inventories.length
+                      each inventory in inventories
+                        tr
+                          td #{inventory.itemname}
+                          td #{inventory.itemtype}
+                          td #{inventory.purchaseprice}
+                          td #{inventory.sellingprice}
+                          td #{inventory.supplycategory}
+                          td 
+                              a.btn.btn-success.btn-block(data-bs-toggle='modal' data-bs-target='#mediumModalEdit' href='/director/managerDash/edit/') Edit
+                          td
+                              form.delete(method="post" action='/director/managerDash/delete')
+                                  input(type="hidden", placeholder="", name="id", value=inventory._id)
+                                  button.btn.btn-danger(type="submit") Delete
+                  // End Table with stripped rows
           .row.justify-content-end
             // the button below should lead to a model to create a new inventory item, w/c item should become retrievable by the data-table.
             .col-sm-2
@@ -144,7 +122,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                         .card-body
                           h5.card-title Item Details
                           // Floating Labels Form
-                          form.row.g-3.needs-validation(name='addInventory' onsubmit='')
+                          form.row.g-3.needs-validation(name='addInventory' method='post' action='/director/managerDash')
                             .col-md-6
                               .form-floating
                                 input#itemname.form-control(required onblur='inventName()' name='itemname' type='text' placeholder='Item Name')
@@ -186,7 +164,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                               .col-md-12
                                 .form-floating
                                   input#floatingCity.form-control(required onblur='inventCycleTime()' name='cycletime' type='text' placeholder='Cycle Time')
-                                  label(for='floatingCity') Cycle Time
+                                  label(for='floatingCity') Cycle Time per Tonne
                                   //
                                     <div class="valid-feedback">Cycle Time is valid!</div>
                                     <div class="invalid-feedback">Cycle Time is not valid!</div>
@@ -194,9 +172,9 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                               .form-floating.mb-3
                                 select#floatingSelect.form-select(required onblur='supplyCateg()' name='supplycategory' aria-label='Supplier Category')
                                   option(selected='' disabled='') Select Category
-                                  option(value='1') Individual Farmer
-                                  option(value='2') Enterprise
-                                  option(value='3') KGL Farm
+                                  option(value='Individual') Individual Farmer
+                                  option(value='Enterprise') Enterprise
+                                  option(value='KGL_Farm') KGL Farm
                                 label(for='floatingSelect') Supplier Category
                                 //
                                   <div class="valid-feedback">Supplier Category is valid!</div>
@@ -209,25 +187,66 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                                   <div class="valid-feedback">Supplier Name is valid!</div>
                                   <div class="invalid-feedback">Supplier Name is not valid!</div>
                             .text-center
-                              button.btn.btn-dark(type='submit' name='submitbutton' onsubmit='')
+                              button.btn.btn-dark(type='submit' name='submitbutton' href=('/director/managerDash'))
                                 | Submit
                               button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
                                 | Reset
                           // End floating Labels Form
-                    //
-                      <div class="modal-footer">
-                      <button
-                      type="button"
-                      class="btn btn-dark"
-                      data-bs-dismiss="modal"
-                      >
-                      Close
-                      </button>
-                      <button type="button" class="btn btn-dark">
-                      Save changes
-                      </button>
-                      </div>
               // End Large Modal
+              #mediumModalEdit.modal.fade(tabindex='-1')
+                  .modal-dialog.modal-md
+                    .modal-content
+                      .modal-header.fresher
+                        h5.modal-title Edit Inventory Item
+                        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+                      .modal-body(style='background-color:rgba(43, 45, 79, 0.531);')
+                        .card
+                          .card-body
+                            h5.card-title Item Details
+                            // Floating Labels Form
+                            form.row.g-3(name='editInventory' method='post' action='/director/managerDash/edit')
+                              .col-md-6
+                                .form-floating
+                                  input#itemname.form-control(required onblur='inventName()' name='itemname' type='text' value=itemname)
+                                  label.form-label(for='itemname') Item Name
+                              .col-md-6
+                                .form-floating
+                                  input#floatingEmail.form-control(required onblur='inventType()' name='itemtype' type='text' value=itemtype)
+                                  label.form-label(for='floatingEmail') Item Type
+                              .col-md-6
+                                .form-floating
+                                  input#floatingPassword.form-control(required onblur='inventPurch()' name='purchaseprice' type='text' value=purchaseprice)
+                                  label.form-label(for='floatingPassword') Purchase Price
+                              .col-md-6
+                                .form-floating
+                                  input#floatingCity.form-control(required onblur='inventSell()' name='sellingprice' type='text' value=sellingprice)
+                                  label.form-label(for='floatingCity') Selling Price
+                              .col-md-6
+                                .form-floating
+                                  input#floatingCity.form-control(required onblur='inventLeadTime()' name='leadtime' type='text' value=leadtime)
+                                  label(for='floatingCity') Lead Time
+                              .col-md-6
+                                .form-floating
+                                  input#floatingCity.form-control(required onblur='inventCycleTime()' name='cycletime' type='text' value=cycletime)
+                                  label(for='floatingCity') Cycle Time per Tonne
+                              .col-md-6
+                                .form-floating.mb-3
+                                  select#floatingSelect.form-select(required onblur='supplyCateg()' name='supplycategory' aria-label='Supplier Category')
+                                    option(selected='' disabled='') Supplier Category
+                                    option(value='Individual') Individual Farmer
+                                    option(value='Enterprise') Enterprise
+                                    option(value='KGL_Farm') KGL Farm
+                                  label(for='floatingSelect') Supplier Category
+                              .col-md-6
+                                .form-floating
+                                  input#floatingZip.form-control(required onblur='inventSuppNam()' name='suppliername' value=suppliername type='text')
+                                  label.form-label(for='floatingZip') Supplier Name
+                              .text-center
+                                button.btn.btn-dark(type='submit' name='submitbutton' href='/director/managerDash/edit')
+                                  | Edit
+                                button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
+                                  | Reset
+                            // End floating Labels Form
       #bordered-profile.tab-pane.fade(role='tabpanel' aria-labelledby='profile-tab')
         .container
           .row
@@ -244,7 +263,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                       th(scope='col') Quantity (Kgs)
                       th(scope='col') Supplier(s)
                       th(scope='col') Avg Lead Time
-                      th(scope='col') Avg Cycle Time
+                      th(scope='col') Avg Cycle Time per Tonne
                   tbody
                     tr
                       th(scope='row') 1
@@ -275,7 +294,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                       td Ground Nuts
                       td 006
                       td 340
-                      td Vanessa Nalubega
+                      td Nalubega Vanessa
                       td 2 days
                       td 5 days/200 kgs
                     tr
