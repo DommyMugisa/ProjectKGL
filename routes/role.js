@@ -1,6 +1,6 @@
 const authorization = {
-    sales:'sales',
-    manager: 'manager',
-    director: 'director'
-}
+  Sales: "Sales",
+  Manager: "Manager",
+  Director: "Director",
+};
 module.exports = authorization;

@@ -11,6 +11,10 @@ const expressSession = require("express-session")({
   saveUninitialized: false,
 });
 
+// Models Section
+// const Manager = require("./models/Manager");
+const User = require("./models/User");
+
 // Routing Section
 const registerroutes = require("./routes/registerroutes");
 const loginRoutes = require("./routes/loginRoutes");
@@ -20,10 +24,6 @@ const directorRoutes = require("./routes/directorRoutes");
 
 // Database
 const config = require("./config/database");
-
-// Models Section
-// const Manager = require("./models/Manager");
-const User = require("./models/User");
 
 //instatiating the express server
 const server = express();

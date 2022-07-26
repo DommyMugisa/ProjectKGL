@@ -100,7 +100,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                           td #{inventory.sellingprice}
                           td #{inventory.supplycategory}
                           td 
-                              a.btn.btn-success.btn-block(data-bs-toggle='modal' data-bs-target='#mediumModalEdit' href='/director/managerDash/edit/') Edit
+                              a.btn.btn-success.btn-block(data-bs-toggle='modal' data-bs-target='#mediumModalEdit' href='/director/managerDash/edit/'+inventory._id) Edit
                           td
                               form.delete(method="post" action='/director/managerDash/delete')
                                   input(type="hidden", placeholder="", name="id", value=inventory._id)
