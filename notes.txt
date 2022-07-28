@@ -1,0 +1,19 @@
+
+                              //- .card-header
+                              //-   h3.card-title   
+                              //-     span.total Procurement sum:-UGX  
+                              //-       strong  #{total.totalProsum}
+                              //-     span.tonaggr  Total tonnage Procured:
+                              //-       strong #{total.totalTonnage}Kgs
+                              //-     span.tonaggr  Selling Px sum:
+                              //-       strong #{total.totalSellpx}Kgs
+
+                              
+                              //- .card-header
+                              //-   h3.card-title   
+                              //-     span.total Procurement sum:-UGX  
+                              //-       strong  #{total.totalProsum}
+                              //-     span.tonaggr  Total tonnage Procured:
+                              //-       strong #{total.totalTonnage}Kgs
+                              //-     span.tonaggr  Selling Px sum:
+                              //-       strong #{total.totalSellpx}Kgs

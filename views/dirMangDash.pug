@@ -100,7 +100,7 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                           td #{inventory.sellingprice}
                           td #{inventory.supplycategory}
                           td 
-                              a.btn.btn-success.btn-block(data-bs-toggle='modal' data-bs-target='#mediumModalEdit' href='/director/managerDash/edit/'+inventory._id) Edit
+                              a.btn.btn-success.btn-block(href='/director/managerDash/'+inventory._id) Edit
                           td
                               form.delete(method="post" action='/director/managerDash/delete')
                                   input(type="hidden", placeholder="", name="id", value=inventory._id)
@@ -192,61 +192,61 @@ nav.navbar.myNav.navbar-expand-md.navbar-dark.bg-dark.header-nav
                               button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
                                 | Reset
                           // End floating Labels Form
-              // End Large Modal
-              #mediumModalEdit.modal.fade(tabindex='-1')
-                  .modal-dialog.modal-md
-                    .modal-content
-                      .modal-header.fresher
-                        h5.modal-title Edit Inventory Item
-                        button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-                      .modal-body(style='background-color:rgba(43, 45, 79, 0.531);')
-                        .card
-                          .card-body
-                            h5.card-title Item Details
-                            // Floating Labels Form
-                            form.row.g-3(name='editInventory' method='post' action='/director/managerDash/edit')
-                              .col-md-6
-                                .form-floating
-                                  input#itemname.form-control(required onblur='inventName()' name='itemname' type='text' value=itemname)
-                                  label.form-label(for='itemname') Item Name
-                              .col-md-6
-                                .form-floating
-                                  input#floatingEmail.form-control(required onblur='inventType()' name='itemtype' type='text' value=itemtype)
-                                  label.form-label(for='floatingEmail') Item Type
-                              .col-md-6
-                                .form-floating
-                                  input#floatingPassword.form-control(required onblur='inventPurch()' name='purchaseprice' type='text' value=purchaseprice)
-                                  label.form-label(for='floatingPassword') Purchase Price
-                              .col-md-6
-                                .form-floating
-                                  input#floatingCity.form-control(required onblur='inventSell()' name='sellingprice' type='text' value=sellingprice)
-                                  label.form-label(for='floatingCity') Selling Price
-                              .col-md-6
-                                .form-floating
-                                  input#floatingCity.form-control(required onblur='inventLeadTime()' name='leadtime' type='text' value=leadtime)
-                                  label(for='floatingCity') Lead Time
-                              .col-md-6
-                                .form-floating
-                                  input#floatingCity.form-control(required onblur='inventCycleTime()' name='cycletime' type='text' value=cycletime)
-                                  label(for='floatingCity') Cycle Time per Tonne
-                              .col-md-6
-                                .form-floating.mb-3
-                                  select#floatingSelect.form-select(required onblur='supplyCateg()' name='supplycategory' aria-label='Supplier Category')
-                                    option(selected='' disabled='') Supplier Category
-                                    option(value='Individual') Individual Farmer
-                                    option(value='Enterprise') Enterprise
-                                    option(value='KGL_Farm') KGL Farm
-                                  label(for='floatingSelect') Supplier Category
-                              .col-md-6
-                                .form-floating
-                                  input#floatingZip.form-control(required onblur='inventSuppNam()' name='suppliername' value=suppliername type='text')
-                                  label.form-label(for='floatingZip') Supplier Name
-                              .text-center
-                                button.btn.btn-dark(type='submit' name='submitbutton' href='/director/managerDash/edit')
-                                  | Edit
-                                button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
-                                  | Reset
-                            // End floating Labels Form
+              //- // End Large Modal
+              //- #mediumModalEdit.modal.fade(tabindex='-1')
+              //-     .modal-dialog.modal-md
+              //-       .modal-content
+              //-         .modal-header.fresher
+              //-           h5.modal-title Edit Inventory Item
+              //-           button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+              //-         .modal-body(style='background-color:rgba(43, 45, 79, 0.531);')
+              //-           .card
+              //-             .card-body
+              //-               h5.card-title Item Details
+              //-               // Floating Labels Form
+              //-               form.row.g-3(name='editInventory' action='/director/directorEditInventory/'+inventory._id)
+              //-                 .col-md-6
+              //-                   .form-floating
+              //-                     input#itemname.form-control(required onblur='inventName()' name='itemname' type='text' value=itemname)
+              //-                     label.form-label(for='itemname') Item Name
+              //-                 .col-md-6
+              //-                   .form-floating
+              //-                     input#floatingEmail.form-control(required onblur='inventType()' name='itemtype' type='text' value=itemtype)
+              //-                     label.form-label(for='floatingEmail') Item Type
+              //-                 .col-md-6
+              //-                   .form-floating
+              //-                     input#floatingPassword.form-control(required onblur='inventPurch()' name='purchaseprice' type='text' value=purchaseprice)
+              //-                     label.form-label(for='floatingPassword') Purchase Price
+              //-                 .col-md-6
+              //-                   .form-floating
+              //-                     input#floatingCity.form-control(required onblur='inventSell()' name='sellingprice' type='text' value=sellingprice)
+              //-                     label.form-label(for='floatingCity') Selling Price
+              //-                 .col-md-6
+              //-                   .form-floating
+              //-                     input#floatingCity.form-control(required onblur='inventLeadTime()' name='leadtime' type='text' value=leadtime)
+              //-                     label(for='floatingCity') Lead Time
+              //-                 .col-md-6
+              //-                   .form-floating
+              //-                     input#floatingCity.form-control(required onblur='inventCycleTime()' name='cycletime' type='text' value=cycletime)
+              //-                     label(for='floatingCity') Cycle Time per Tonne
+              //-                 .col-md-6
+              //-                   .form-floating.mb-3
+              //-                     select#floatingSelect.form-select(required onblur='supplyCateg()' name='supplycategory' aria-label='Supplier Category')
+              //-                       option(selected='' disabled='') Supplier Category
+              //-                       option(value='Individual') Individual Farmer
+              //-                       option(value='Enterprise') Enterprise
+              //-                       option(value='KGL_Farm') KGL Farm
+              //-                     label(for='floatingSelect') Supplier Category
+              //-                 .col-md-6
+              //-                   .form-floating
+              //-                     input#floatingZip.form-control(required onblur='inventSuppNam()' name='suppliername' value=suppliername type='text')
+              //-                     label.form-label(for='floatingZip') Supplier Name
+              //-                 .text-center
+              //-                   button.btn.btn-dark(type='submit' name='submitbutton' href='/director/managerDash/edit')
+              //-                     | Edit
+              //-                   button.btn.btn-dark(type='reset' onclick='' name='resetbutton')
+              //-                     | Reset
+              //-               // End floating Labels Form
       #bordered-profile.tab-pane.fade(role='tabpanel' aria-labelledby='profile-tab')
         .container
           .row

@@ -74,7 +74,7 @@ server.use("/sales", salesRoutes);
 server.use("/manager", managerRoutes);
 server.use("/director", directorRoutes);
 
-server. get('/nonuser', (req,res) => {
+server.get('/nonuser', (req,res) => {
   res.render('nonuserform')
 });
 
